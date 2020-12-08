@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef, useState, useEffect } from "react";
+import { getArticles } from "./newsApi";
 
 function App() {
+  const [articles, setArticles] = useState([]);
+  const searchRef = useRef("");
+  const ratioRef = useRef(50);
+  const LOCAL_STORAGE_KEY = "articles";
+
+  useEffect(() => {
+    if (!articles) {
+      getNews();
+    } else {
+      const tempArticles = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+      setArticles(tempArticles);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(articles));
+  }, [articles]);
+
+  function getNews(e) {
+    const searchString = searchRef.current.value;
+    const ratio = ratioRef.current.value;
+    getArticles(searchString, ratio).then((data) => setArticles(data));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type="text" ref={searchRef} placeholder="Search" />
+      <input type="number" ref={ratioRef} placeholder="Ratio" />
+      <button onClick={getNews}>Search</button>
+    </>
   );
 }
 
