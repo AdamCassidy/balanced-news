@@ -1,9 +1,3 @@
-import React from 'react'
-
-export default function Article({ article}) {
-    return (
-        <div>
-            
-        </div>
-    )
+export default function Article({ article }) {
+  return { article };
 }

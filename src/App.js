@@ -8,12 +8,8 @@ function App() {
   const LOCAL_STORAGE_KEY = "articles";
 
   useEffect(() => {
-    if (!articles) {
-      getNews();
-    } else {
-      const tempArticles = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-      setArticles(tempArticles);
-    }
+    const tempArticles = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    setArticles(tempArticles);
   }, []);
 
   useEffect(() => {
@@ -31,6 +27,7 @@ function App() {
       <input type="text" ref={searchRef} placeholder="Search" />
       <input type="number" ref={ratioRef} placeholder="Ratio" />
       <button onClick={getNews}>Search</button>
+      <p>{articles}</p>
     </>
   );
 }

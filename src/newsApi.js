@@ -11,12 +11,15 @@ export const getArticles = async (searchString, ratio) => {
   } else {
     url = everythingUrl;
   }
+  url += "&apiKey=" + process.env.REACT_APP_API_KEY;
+
   const articles = await axios
     .get(url)
-    .then((data) => data.articles)
+    .then((data) => data.data.articles)
     .catch((err) => {
       console.log(err);
       return;
     });
+  console.log(articles);
   return articles;
 };
