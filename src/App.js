@@ -27,7 +27,12 @@ function App() {
       <input type="text" ref={searchRef} placeholder="Search" />
       <input type="number" ref={ratioRef} placeholder="Ratio" />
       <button onClick={getNews}>Search</button>
-      <p>{articles}</p>
+      <ul>
+        {articles.map((article) => 
+          <li key={article.id}><a href={article.url}>{article.title}</a>
+          </li>
+          )}
+      </ul>
     </>
   );
 }

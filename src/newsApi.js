@@ -20,6 +20,5 @@ export const getArticles = async (searchString, ratio) => {
       console.log(err);
       return;
     });
-  console.log(articles);
   return articles;
 };
