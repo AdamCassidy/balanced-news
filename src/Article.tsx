@@ -1,7 +1,6 @@
 import React from "react";
-
+import "./Article.scss";
 export interface ArticleProps {
-  key: string;
   description?: string;
   author?: string;
   urlToImage?: string;
@@ -18,9 +17,9 @@ const Article: React.FC<ArticleProps> = ({
 }): JSX.Element => {
   return (
     <div>
-      <a href={url}>{title}</a>
+      <a href={url} target="_blank" rel="noopener noreferrer">{title}</a>
       <br/>
-      <img src={urlToImage} alt="Article"/>
+      <img src={urlToImage} alt="" className="image-container"/>
     </div>
   );
 };
