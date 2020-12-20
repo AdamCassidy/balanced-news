@@ -1,17 +1,12 @@
 import axios from "axios";
 
 const baseUrl = "https://newsapi.org/v2/";
-const topHeadlinesUrl = baseUrl + "top-headlines/";
 const everythingUrl = baseUrl + "everything/";
 
-
-
-export const getArticles = async (search: string, ratio: number) => {
-  let url; 
+export const getArticles = async (search: string) => {
+  let url = everythingUrl  + "?language=en&pageSize=100";
   if (search !== "") {
-    url = topHeadlinesUrl + "?q=" + search;
-  } else {
-    url = everythingUrl;
+    url +="&q=" + search;
   }
   url += "&apiKey=" + process.env.REACT_APP_API_KEY;
 
