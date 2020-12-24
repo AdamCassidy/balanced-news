@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
+import ErrorBoundary from "./ErrorBoundary";
 
-function App(): JSX.Element {
+function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
   const searchRef = useRef<HTMLInputElement>(null);
   const ratioRef = useRef<HTMLInputElement>(null);
@@ -33,7 +34,7 @@ function App(): JSX.Element {
     const posRes = await fetch("positive-words.txt");
     const posText = await posRes.text();
     positiveWords = posText.toString().split("\n");
-    
+
     // Two words is a good trade-off between amount of articles and good/bad accuracy
     while (count < 2) {
       if (Math.random() * 100 < ratio) {
@@ -60,8 +61,11 @@ function App(): JSX.Element {
       let search = searchRef.current.value.toString() || "";
       if (ratioRef && ratioRef.current) {
         let ratio = parseFloat(ratioRef.current.value.toString()) || 50;
-        if (ratio > 100) { ratio = 100} 
-        else if (ratio < 0) {ratio = 0}
+        if (ratio > 100) {
+          ratio = 100;
+        } else if (ratio < 0) {
+          ratio = 0;
+        }
         if (search === "") {
           search = await generateSearch(ratio);
           console.log(search);
@@ -72,12 +76,28 @@ function App(): JSX.Element {
     }
   };
 
+  const ErrorFallback = ({ error }) => {
+    return (
+      <div role="alert">
+        <p>Something went wrong:</p>
+        <pre>{error.message}</pre>
+      </div>
+    );
+  };
+
   return (
     <>
       <input type="text" ref={searchRef} placeholder="Search" />
-      <input type="number" ref={ratioRef} placeholder="Good news probability (out of 100)" style={{ width:"300px" }}/>
+      <input
+        type="number"
+        ref={ratioRef}
+        placeholder="Good news probability (out of 100)"
+        style={{ width: "300px" }}
+      />
       <button onClick={getNews}>Search</button>
-      {articles ? <Articles articles={articles}></Articles> : null}
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        {articles ? <Articles articles={articles}></Articles> : null}
+      </ErrorBoundary>
     </>
   );
 }

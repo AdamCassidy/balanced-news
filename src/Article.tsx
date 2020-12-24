@@ -10,16 +10,14 @@ export interface ArticleProps {
   url: string;
 }
 
-const Article: React.FC<ArticleProps> = ({
-  url,
-  title,
-  urlToImage,
-}): JSX.Element => {
+const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
   return (
     <div>
-      <a href={url} target="_blank" rel="noopener noreferrer">{title}</a>
-      <br/>
-      <img src={urlToImage} alt="" className="image-container"/>
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {title}
+      </a>
+      <br />
+      <img src={urlToImage} alt="" className="image-container" />
     </div>
   );
 };
