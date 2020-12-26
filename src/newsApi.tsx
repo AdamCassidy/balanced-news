@@ -18,5 +18,5 @@ export const getArticles = async (search: string) => {
       return;
     });
 
-  return new Array<ArticleProps>(...new Set<ArticleProps>(articles));
+  return articles;
 };
