@@ -71,7 +71,14 @@ function App() {
           console.log(search);
         }
         const data: ArticleProps[] = await getArticles(search);
-        setArticles(data);
+        Array.from(
+          new Set<string>(data.map((article) => article.title))
+        ).forEach((title) => {
+          const article: ArticleProps | undefined = data.find(
+            (article) => article.title === title
+          );
+          if (article) setArticles((articles) => [article, ...articles]);
+        });
       }
     }
   };

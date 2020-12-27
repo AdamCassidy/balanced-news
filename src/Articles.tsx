@@ -10,24 +10,16 @@ interface ArticlesProps {
 const Articles: React.FC<ArticlesProps> = ({ articles }) => {
   return (
     <ul>
-      {Array.from(
-        new Set<string>(articles.map((article) => article.title))
-      ).map((title) => {
-        const article: ArticleProps | undefined = articles.find(
-          (article) => article.title === title
+      {articles.map((article) => {
+        return (
+          <li key={nextId()}>
+            <Article
+              url={article.url}
+              title={article.title}
+              urlToImage={article.urlToImage}
+            ></Article>
+          </li>
         );
-        if (!article) return null;
-        else {
-          return (
-            <li key={nextId()}>
-              <Article
-                url={article.url}
-                title={article.title}
-                urlToImage={article.urlToImage}
-              ></Article>
-            </li>
-          );
-        }
       })}
     </ul>
   );
