@@ -3,12 +3,15 @@ import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
 import ErrorBoundary from "./ErrorBoundary";
+import Slider from "@material-ui/core/Slider";
+import Grid from "@material-ui/core/Grid";
+import { ChangeEvent } from "react";
 
 function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
-  const ratioRef = useRef<HTMLInputElement>(null);
+  const [ratio, setRatio] = useState<number>(50);
   const LOCAL_STORAGE_KEY = "articles";
 
   useEffect(() => {
@@ -61,13 +64,7 @@ function App() {
     setLoading(true);
     if (searchRef && searchRef.current) {
       let search = searchRef.current.value.toString() || "";
-      if (ratioRef && ratioRef.current) {
-        let ratio = parseFloat(ratioRef.current.value.toString()) || 50;
-        if (ratio > 100) {
-          ratio = 100;
-        } else if (ratio < 0) {
-          ratio = 0;
-        }
+      if (ratio) {
         if (search === "") {
           search = await generateSearch(ratio);
           console.log(search);
@@ -97,25 +94,43 @@ function App() {
     );
   };
 
+  const onSliderChange = (_e: ChangeEvent<{}>, newValue: number | number[]) => {
+    if (typeof newValue === "number") setRatio(newValue);
+    setArticles([]);
+  };
+
   return (
     <>
-      <input type="text" ref={searchRef} placeholder="Search" />
-      <input
-        type="number"
-        ref={ratioRef}
-        placeholder="Good news probability (out of 100)"
-        style={{ width: "300px" }}
-      />
-      <button onClick={getNews}>Search</button>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        {articles ? (
-          <Articles
-            articles={articles}
-            getNews={getNews}
-            loading={loading}
-          ></Articles>
-        ) : null}
-      </ErrorBoundary>
+      <Grid container spacing={2}>
+        <Grid item>
+          <input type="text" ref={searchRef} placeholder="Regular search" />
+        </Grid>
+        <Grid item>
+          <Slider
+            defaultValue={50}
+            marks
+            min={1}
+            max={99}
+            style={{ width: "300px" }}
+            value={ratio}
+            onChange={onSliderChange}
+          />
+        </Grid>
+        <Grid item>
+          <button onClick={getNews}>Search</button>
+        </Grid>
+        <Grid container>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            {articles ? (
+              <Articles
+                articles={articles}
+                getNews={getNews}
+                loading={loading}
+              ></Articles>
+            ) : null}
+          </ErrorBoundary>
+        </Grid>
+      </Grid>
     </>
   );
 }
