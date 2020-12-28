@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ArticleProps } from "./Article";
 
 const baseUrl = "https://newsapi.org/v2/";
 const everythingUrl = baseUrl + "everything/";
@@ -15,7 +14,7 @@ export const getArticles = async (search: string) => {
     .then((data) => data.data.articles)
     .catch((err) => {
       console.log(err);
-      return;
+      return [];
     });
 
   return articles;

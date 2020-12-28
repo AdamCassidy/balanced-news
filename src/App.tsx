@@ -6,6 +6,7 @@ import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const ratioRef = useRef<HTMLInputElement>(null);
   const LOCAL_STORAGE_KEY = "articles";
@@ -57,6 +58,7 @@ function App() {
     return search;
   };
   const getNews = async () => {
+    setLoading(true);
     if (searchRef && searchRef.current) {
       let search = searchRef.current.value.toString() || "";
       if (ratioRef && ratioRef.current) {
@@ -71,16 +73,19 @@ function App() {
           console.log(search);
         }
         const data: ArticleProps[] = await getArticles(search);
+        // Remove duplicate articles with the same title
         Array.from(
           new Set<string>(data.map((article) => article.title))
         ).forEach((title) => {
-          const article: ArticleProps | undefined = data.find(
-            (article) => article.title === title
-          );
-          if (article) setArticles((articles) => [article, ...articles]);
+          const article: ArticleProps | undefined = data.find((article) => {
+            return article.title === title;
+          });
+          if (article) setArticles([...articles, article]);
         });
       }
     }
+    setLoading(false);
+    return;
   };
 
   const ErrorFallback = ({ error }) => {
@@ -103,7 +108,13 @@ function App() {
       />
       <button onClick={getNews}>Search</button>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        {articles ? <Articles articles={articles}></Articles> : null}
+        {articles ? (
+          <Articles
+            articles={articles}
+            getNews={getNews}
+            loading={loading}
+          ></Articles>
+        ) : null}
       </ErrorBoundary>
     </>
   );
