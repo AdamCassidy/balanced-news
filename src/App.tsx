@@ -110,11 +110,11 @@ function App() {
   };
 
   const marks = [
-    { value: 0, label: 1 },
-    { value: 25, label: 25 },
-    { value: 50, label: 50 },
-    { value: 75, label: 75 },
-    { value: 99, label: 99 },
+    { value: 0, label: "1%" },
+    { value: 25, label: "25%" },
+    { value: 50, label: "50%" },
+    { value: 75, label: "75%" },
+    { value: 99, label: "99%" },
   ];
 
   const muiTheme = createMuiTheme({
@@ -137,8 +137,8 @@ function App() {
     <>
       <Grid container spacing={2} justify="center">
         <Grid item>
-          <Typography id="ratio-slider">
-            Percentage of positive (vs negative) news
+          <Typography id="ratio-slider" align="center">
+            Positive vs Negative News
           </Typography>
           <ThemeProvider theme={muiTheme}>
             <Slider
