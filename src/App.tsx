@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
@@ -10,7 +10,8 @@ import { ChangeEvent } from "react";
 function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const searchRef = useRef<HTMLInputElement>(null);
+  /*const searchRef = useRef<HTMLInputElement>(null);
+   */
   const [ratio, setRatio] = useState<number>(50);
   const LOCAL_STORAGE_KEY = "articles";
 
@@ -62,28 +63,27 @@ function App() {
   };
   const getNews = async () => {
     setLoading(true);
-    if (searchRef && searchRef.current) {
-      let search = searchRef.current.value.toString() || "";
-      if (ratio) {
-        if (search === "") {
-          search = await generateSearch(ratio);
-          console.log(search);
-        }
-        const data: ArticleProps[] = await getArticles(search);
-        if (data.length === 0) {
-          getNews();
-          return;
-        }
-        // Remove duplicate articles with the same title
-        Array.from(
-          new Set<string>(data.map((article) => article.title))
-        ).forEach((title) => {
+    /*if (searchRef && searchRef.current) {
+      let search = searchRef.current.value.toString() || "";*/
+    if (ratio) {
+      /*if (search === "") {*/
+      const search = await generateSearch(ratio);
+      console.log(search);
+      /*}*/
+      const data: ArticleProps[] = await getArticles(search);
+      if (data.length === 0) {
+        getNews();
+        return;
+      }
+      // Remove duplicate articles with the same title
+      Array.from(new Set<string>(data.map((article) => article.title))).forEach(
+        (title) => {
           const article: ArticleProps | undefined = data.find((article) => {
             return article.title === title;
           });
           if (article) setArticles([...articles, article]);
-        });
-      }
+        }
+      );
     }
     setLoading(false);
     return;
@@ -110,12 +110,6 @@ function App() {
     <>
       <Grid container spacing={2}>
         <Grid item>
-          <input type="text" ref={searchRef} placeholder="Regular search" />
-        </Grid>
-        <Grid item>
-          <button onClick={getNews}>Search</button>
-        </Grid>
-        <Grid item>
           <Slider
             defaultValue={50}
             marks
@@ -127,7 +121,10 @@ function App() {
             onChangeCommitted={onSliderChangeCommitted}
           />
         </Grid>
-
+        <Grid item>
+          {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
+          <button onClick={getNews}>Search</button>
+        </Grid>
         <Grid container>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
