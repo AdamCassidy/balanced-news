@@ -17,7 +17,9 @@ const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
         {title}
       </a>
       <br />
-      <img src={urlToImage} alt="" className="image-container" />
+      {urlToImage && (
+        <img src={urlToImage} alt="" className="image-container" />
+      )}
     </div>
   );
 };

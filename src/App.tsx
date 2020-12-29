@@ -6,7 +6,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
 
 function App() {
@@ -70,7 +70,6 @@ function App() {
     if (ratio) {
       /*if (search === "") {*/
       const search = await generateSearch(ratio);
-      console.log(search);
       /*}*/
       const data: ArticleProps[] = await getArticles(search);
       if (data.length === 0) {
@@ -91,7 +90,7 @@ function App() {
     return;
   };
 
-  const ErrorFallback = ({ error }) => {
+  const ErrorFallback = ({ error }: { error: Error }) => {
     return (
       <div role="alert">
         <p>Something went wrong:</p>
@@ -109,15 +108,15 @@ function App() {
     getNews();
   };
 
-  const marks = [
-    { value: 0, label: "1%" },
-    { value: 25, label: "25%" },
-    { value: 50, label: "50%" },
-    { value: 75, label: "75%" },
-    { value: 99, label: "99%" },
-  ];
+  // const marks: { value: number; label: string }[] = [
+  //   { value: 0, label: "0:1" },
+  //   { value: 25, label: "1:3" },
+  //   { value: 50, label: "1:1" },
+  //   { value: 75, label: "3:1" },
+  //   { value: 99, label: "1:0" },
+  // ];
 
-  const muiTheme = createMuiTheme({
+  const muiTheme: Theme = createMuiTheme({
     overrides: {
       MuiSlider: {
         thumb: {
@@ -138,12 +137,12 @@ function App() {
       <Grid container spacing={2} justify="center">
         <Grid item>
           <Typography id="ratio-slider" align="center">
-            Positive vs Negative News
+            Slide to adjust positive vs negative news
           </Typography>
           <ThemeProvider theme={muiTheme}>
             <Slider
               defaultValue={50}
-              marks={marks}
+              // marks={marks}
               min={1}
               max={99}
               style={{ width: "300px" }}
@@ -156,15 +155,17 @@ function App() {
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
         <Grid container justify="center">
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            {articles ? (
-              <Articles
-                articles={articles}
-                getNews={getNews}
-                loading={loading}
-              ></Articles>
-            ) : null}
-          </ErrorBoundary>
+          <Grid item>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              {articles ? (
+                <Articles
+                  articles={articles}
+                  getNews={getNews}
+                  loading={loading}
+                ></Articles>
+              ) : null}
+            </ErrorBoundary>
+          </Grid>
         </Grid>
       </Grid>
     </>
