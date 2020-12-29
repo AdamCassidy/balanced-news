@@ -70,6 +70,10 @@ function App() {
           console.log(search);
         }
         const data: ArticleProps[] = await getArticles(search);
+        if (data.length === 0) {
+          getNews();
+          return;
+        }
         // Remove duplicate articles with the same title
         Array.from(
           new Set<string>(data.map((article) => article.title))
@@ -96,6 +100,9 @@ function App() {
 
   const onSliderChange = (_e: ChangeEvent<{}>, newValue: number | number[]) => {
     if (typeof newValue === "number") setRatio(newValue);
+  };
+
+  const onSliderChangeCommitted = () => {
     setArticles([]);
   };
 
@@ -106,6 +113,9 @@ function App() {
           <input type="text" ref={searchRef} placeholder="Regular search" />
         </Grid>
         <Grid item>
+          <button onClick={getNews}>Search</button>
+        </Grid>
+        <Grid item>
           <Slider
             defaultValue={50}
             marks
@@ -114,11 +124,10 @@ function App() {
             style={{ width: "300px" }}
             value={ratio}
             onChange={onSliderChange}
+            onChangeCommitted={onSliderChangeCommitted}
           />
         </Grid>
-        <Grid item>
-          <button onClick={getNews}>Search</button>
-        </Grid>
+
         <Grid container>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
