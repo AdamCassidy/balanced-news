@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from "react";
 import Article from "./Article";
 import type { ArticleProps } from "./Article";
 import nextId from "react-id-generator";
+import { Grid } from "@material-ui/core";
 export interface ArticlesProps {
   articles: ArticleProps[];
   getNews: () => {};
@@ -25,23 +26,23 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
       {articles.map((article, index) => {
         if (articles.length === index + 1) {
           return (
-            <li key={nextId()} ref={isLastArticleElement}>
+            <Grid item key={nextId()} ref={isLastArticleElement}>
               <Article
                 url={article.url}
                 title={article.title}
                 urlToImage={article.urlToImage}
               ></Article>
-            </li>
+            </Grid>
           );
         } else {
           return (
-            <li key={nextId()}>
+            <Grid item key={nextId()}>
               <Article
                 url={article.url}
                 title={article.title}
                 urlToImage={article.urlToImage}
               ></Article>
-            </li>
+            </Grid>
           );
         }
       })}

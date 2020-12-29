@@ -1,4 +1,7 @@
 .image-container {
-  height: 500px;
+  height: 600px;
 }
 /*# sourceMappingURL=Article.css.map */
+.link-container {
+  text-decoration: none;
+}

@@ -14,6 +14,7 @@ export const getArticles = async (search: string) => {
     .then((data) => data.data.articles)
     .catch((err) => {
       console.log(err);
+      if (err.status === 429) console.log("Too many requests");
       return [];
     });
 

@@ -136,8 +136,8 @@ function App() {
     <>
       <Grid container spacing={2} justify="center">
         <Grid item>
-          <Typography id="ratio-slider" align="center">
-            Slide to adjust positive vs negative news
+          <Typography id="ratio-slider" align="center" variant="h5">
+            Slide to adjust ratio of positive vs negative news
           </Typography>
           <ThemeProvider theme={muiTheme}>
             <Slider
@@ -145,7 +145,6 @@ function App() {
               // marks={marks}
               min={1}
               max={99}
-              style={{ width: "300px" }}
               value={ratio}
               onChange={onSliderChange}
               onChangeCommitted={onSliderChangeCommitted}
@@ -155,17 +154,15 @@ function App() {
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
         <Grid container justify="center">
-          <Grid item>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              {articles ? (
-                <Articles
-                  articles={articles}
-                  getNews={getNews}
-                  loading={loading}
-                ></Articles>
-              ) : null}
-            </ErrorBoundary>
-          </Grid>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            {articles ? (
+              <Articles
+                articles={articles}
+                getNews={getNews}
+                loading={loading}
+              ></Articles>
+            ) : null}
+          </ErrorBoundary>
         </Grid>
       </Grid>
     </>
