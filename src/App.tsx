@@ -4,6 +4,7 @@ import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
 import ErrorBoundary from "./ErrorBoundary";
 import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { ChangeEvent } from "react";
 
@@ -106,25 +107,39 @@ function App() {
     setArticles([]);
   };
 
+  const marks = [
+    { value: 0, label: 1 },
+    { value: 25, label: 25 },
+    { value: 50, label: 50 },
+    { value: 75, label: 75 },
+    { value: 99, label: 99 },
+  ];
+
   return (
     <>
       <Grid container spacing={2}>
         <Grid item>
+          <Typography id="ratio-slider">
+            Percentage of positive (vs negative) news
+          </Typography>
           <Slider
             defaultValue={50}
-            marks
+            marks={marks}
             min={1}
             max={99}
             style={{ width: "300px" }}
             value={ratio}
             onChange={onSliderChange}
             onChangeCommitted={onSliderChangeCommitted}
+            aria-labelledby="ratio-slider"
           />
-        </Grid>
-        <Grid item>
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
+        </Grid>
+
+        <Grid item>
           <button onClick={getNews}>Search</button>
         </Grid>
+
         <Grid container>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
