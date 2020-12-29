@@ -101,10 +101,11 @@ function App() {
 
   const onSliderChange = (_e: ChangeEvent<{}>, newValue: number | number[]) => {
     if (typeof newValue === "number") setRatio(newValue);
+    setArticles([]);
   };
 
-  const onSliderChangeCommitted = () => {
-    setArticles([]);
+  const onSliderChangeCommitted = async () => {
+    getNews();
   };
 
   const marks = [
@@ -135,11 +136,6 @@ function App() {
           />
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
-
-        <Grid item>
-          <button onClick={getNews}>Search</button>
-        </Grid>
-
         <Grid container>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
