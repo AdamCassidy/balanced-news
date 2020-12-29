@@ -6,6 +6,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
 
 function App() {
@@ -116,27 +117,45 @@ function App() {
     { value: 99, label: 99 },
   ];
 
+  const muiTheme = createMuiTheme({
+    overrides: {
+      MuiSlider: {
+        thumb: {
+          color: "yellow",
+        },
+        track: {
+          color: "green",
+        },
+        rail: {
+          color: "red",
+        },
+      },
+    },
+  });
+
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justify="center">
         <Grid item>
           <Typography id="ratio-slider">
             Percentage of positive (vs negative) news
           </Typography>
-          <Slider
-            defaultValue={50}
-            marks={marks}
-            min={1}
-            max={99}
-            style={{ width: "300px" }}
-            value={ratio}
-            onChange={onSliderChange}
-            onChangeCommitted={onSliderChangeCommitted}
-            aria-labelledby="ratio-slider"
-          />
+          <ThemeProvider theme={muiTheme}>
+            <Slider
+              defaultValue={50}
+              marks={marks}
+              min={1}
+              max={99}
+              style={{ width: "300px" }}
+              value={ratio}
+              onChange={onSliderChange}
+              onChangeCommitted={onSliderChangeCommitted}
+              aria-labelledby="ratio-slider"
+            />
+          </ThemeProvider>
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
-        <Grid container>
+        <Grid container justify="center">
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
               <Articles
