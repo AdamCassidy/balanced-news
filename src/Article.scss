@@ -1,7 +1,18 @@
-.image-container {
-  height: 500px;
+.image {
+  max-height: 600px;
 }
 
-.card-container {
+.grid-item {
   padding-bottom: 40px;
+}
+
+.link-text {
+  text-decoration: none;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }

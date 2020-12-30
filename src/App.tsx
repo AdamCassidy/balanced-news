@@ -133,8 +133,14 @@ function App() {
   });
 
   return (
-    <>
-      <Grid container spacing={2} justify="center">
+    <div className="app">
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        justify="center"
+        className="app"
+      >
         <Grid item>
           <Typography id="ratio-slider" align="center" variant="h5">
             Slide to adjust ratio of positive vs negative news
@@ -153,7 +159,7 @@ function App() {
           </ThemeProvider>
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
-        <Grid container justify="center">
+        <Grid item xs={9}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
               <Articles
@@ -165,7 +171,7 @@ function App() {
           </ErrorBoundary>
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
 

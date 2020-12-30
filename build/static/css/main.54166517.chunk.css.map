@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/Article.scss"],"names":[],"mappings":"AAAA,iBACE,gBAAiB,CAClB,gBAGC,mBAAoB","file":"main.54166517.chunk.css","sourcesContent":[".image-container {\r\n  max-height: 600px;\r\n}\r\n\r\n.card-container {\r\n  padding-bottom: 40px;\r\n}\r\n"]}

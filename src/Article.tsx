@@ -13,15 +13,18 @@ export interface ArticleProps {
 
 const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
   return (
-    <Grid item className="card-container" xs={6}>
-      <Link href={url} target="_blank" rel="noopener noreferrer">
-        <Typography align="center" variant="h5">
+    <Grid item className="grid-item">
+      <Link
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="link-text"
+      >
+        <Typography align="center" variant="h5" className="link-text">
           {title}
         </Typography>
+        {urlToImage && <img src={urlToImage} alt="" className="image center" />}
       </Link>
-      {urlToImage && (
-        <img src={urlToImage} alt="" className="image-container" />
-      )}
     </Grid>
   );
 };
