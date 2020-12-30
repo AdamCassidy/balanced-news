@@ -1,4 +1,5 @@
 import React, { /*useRef,*/ useState, useEffect } from "react";
+import "./App.scss";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
@@ -136,12 +137,12 @@ function App() {
     <div className="app">
       <Grid
         container
-        spacing={2}
         alignItems="center"
         justify="center"
         className="app"
+        spacing={2}
       >
-        <Grid item>
+        <Grid item justify="center">
           <Typography id="ratio-slider" align="center" variant="h5">
             Slide to adjust ratio of positive vs negative news
           </Typography>
@@ -159,7 +160,7 @@ function App() {
           </ThemeProvider>
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
-        <Grid item xs={9}>
+        <Grid item>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
               <Articles

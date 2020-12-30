@@ -11,7 +11,7 @@ export interface ArticlesProps {
 
 const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
   const observer = useRef<IntersectionObserver>();
-  const isLastArticleElement = useCallback(
+  const isLastGridItem = useCallback(
     (node) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async (entries) => {
@@ -22,12 +22,13 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
     [getNews, loading]
   );
   return (
-    <ul>
+    <Grid container alignItems="center" justify="center" spacing={4}>
       {articles.map((article, index) => {
         if (articles.length === index + 1) {
           return (
-            <Grid item key={nextId()} ref={isLastArticleElement}>
+            <Grid item xs={12} ref={isLastGridItem}>
               <Article
+                key={nextId()}
                 url={article.url}
                 title={article.title}
                 urlToImage={article.urlToImage}
@@ -36,8 +37,9 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
           );
         } else {
           return (
-            <Grid item key={nextId()}>
+            <Grid item xs={12}>
               <Article
+                key={nextId()}
                 url={article.url}
                 title={article.title}
                 urlToImage={article.urlToImage}
@@ -46,7 +48,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
           );
         }
       })}
-    </ul>
+    </Grid>
   );
 };
 
