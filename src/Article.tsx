@@ -1,4 +1,4 @@
-import { Link, Typography } from "@material-ui/core";
+import { Grid, Link, Typography } from "@material-ui/core";
 import React from "react";
 import "./Article.scss";
 export interface ArticleProps {
@@ -13,12 +13,18 @@ export interface ArticleProps {
 
 const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
   return (
-    <Link href={url} target="_blank" rel="noopener noreferrer">
-      <Typography variant="h5" align="center">
-        {title}
-      </Typography>
-      {urlToImage && <img src={urlToImage} alt="" className="center" />}
-    </Link>
+    <Grid container justify="center" alignItems="center">
+      <Grid item>
+        <Link href={url} target="_blank" rel="noopener noreferrer">
+          <Typography variant="h5" align="center">
+            {title}
+          </Typography>
+        </Link>
+        <Link href={url} target="_blank" rel="noopener noreferrer">
+          {urlToImage && <img src={urlToImage} alt="" className="center" />}
+        </Link>
+      </Grid>
+    </Grid>
   );
 };
 
