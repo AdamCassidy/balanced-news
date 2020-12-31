@@ -1,5 +1,4 @@
 import React, { /*useRef,*/ useState, useEffect } from "react";
-import "./App.scss";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
@@ -134,7 +133,7 @@ function App() {
   });
 
   return (
-    <div className="app">
+    <div>
       <Grid
         container
         alignItems="center"

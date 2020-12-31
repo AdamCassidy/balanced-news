@@ -24,7 +24,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
   return (
     <Grid container alignItems="center" justify="center" spacing={4}>
       {articles.map((article, index) => {
-        if (articles.length === index + 1) {
+        if (articles.length === index + 1 && article.urlToImage) {
           return (
             <Grid item xs={12} ref={isLastGridItem}>
               <Article
