@@ -24,26 +24,30 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
   return (
     <Grid container alignItems="center" justify="center" spacing={4}>
       {articles.map((article, index) => {
-        if (articles.length === index + 1 && article.urlToImage) {
+        if (articles.length === index + 1) {
           return (
             <Grid item xs={12} ref={isLastGridItem}>
-              <Article
-                key={nextId()}
-                url={article.url}
-                title={article.title}
-                urlToImage={article.urlToImage}
-              ></Article>
+              {article.urlToImage && (
+                <Article
+                  key={nextId()}
+                  url={article.url}
+                  title={article.title}
+                  urlToImage={article.urlToImage}
+                ></Article>
+              )}
             </Grid>
           );
         } else {
           return (
             <Grid item xs={12}>
-              <Article
-                key={nextId()}
-                url={article.url}
-                title={article.title}
-                urlToImage={article.urlToImage}
-              ></Article>
+              {article.urlToImage && (
+                <Article
+                  key={nextId()}
+                  url={article.url}
+                  title={article.title}
+                  urlToImage={article.urlToImage}
+                ></Article>
+              )}
             </Grid>
           );
         }

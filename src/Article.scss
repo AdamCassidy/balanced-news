@@ -1,6 +1,18 @@
+.card {
+  max-width: 1200px;
+  padding-bottom: 2rem;
+}
+
+.image {
+  max-width: 85%;
+}
+
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 85%;
+}
+
+.title {
+  text-decoration: none;
 }
