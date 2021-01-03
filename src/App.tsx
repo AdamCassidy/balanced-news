@@ -1,4 +1,4 @@
-import React, { /*useRef,*/ useState, useEffect } from "react";
+import { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
+import "./App.scss";
 
 function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
@@ -116,7 +117,10 @@ function App() {
   //   { value: 99, label: "1:0" },
   // ];
 
-  const muiTheme: Theme = createMuiTheme({
+  const theme: Theme = createMuiTheme({
+    typography: {
+      fontFamily: '"Inter", sans-serif',
+    },
     overrides: {
       MuiSlider: {
         thumb: {
@@ -133,30 +137,22 @@ function App() {
   });
 
   return (
-    <div>
-      <Grid
-        container
-        alignItems="center"
-        justify="center"
-        className="app"
-        spacing={2}
-      >
+    <ThemeProvider theme={theme}>
+      <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item justify="center">
           <Typography id="ratio-slider" align="center" variant="h5">
             Slide to adjust ratio of positive vs negative news
           </Typography>
-          <ThemeProvider theme={muiTheme}>
-            <Slider
-              defaultValue={50}
-              // marks={marks}
-              min={1}
-              max={99}
-              value={ratio}
-              onChange={onSliderChange}
-              onChangeCommitted={onSliderChangeCommitted}
-              aria-labelledby="ratio-slider"
-            />
-          </ThemeProvider>
+          <Slider
+            defaultValue={50}
+            // marks={marks}
+            min={1}
+            max={99}
+            value={ratio}
+            onChange={onSliderChange}
+            onChangeCommitted={onSliderChangeCommitted}
+            aria-labelledby="ratio-slider"
+          />
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
         <Grid item>
@@ -171,7 +167,7 @@ function App() {
           </ErrorBoundary>
         </Grid>
       </Grid>
-    </div>
+    </ThemeProvider>
   );
 }
 

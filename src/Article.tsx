@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import "./Article.scss";
+import "./App.scss";
 export interface ArticleProps {
   description?: string;
   author?: string;
@@ -30,7 +31,7 @@ const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
         >
           <Card className="card center">
             <CardContent>
-              <Typography variant="h5" align="center" className="title">
+              <Typography variant="h5" align="center">
                 {title}
               </Typography>
             </CardContent>
