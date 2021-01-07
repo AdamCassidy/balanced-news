@@ -32,6 +32,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
                   key={nextId()}
                   url={article.url}
                   title={article.title}
+                  description={article.description}
                   urlToImage={article.urlToImage}
                 ></Article>
               )}
@@ -45,6 +46,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
                   key={nextId()}
                   url={article.url}
                   title={article.title}
+                  description={article.description}
                   urlToImage={article.urlToImage}
                 ></Article>
               )}

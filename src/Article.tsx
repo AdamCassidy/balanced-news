@@ -19,7 +19,12 @@ export interface ArticleProps {
   url: string;
 }
 
-const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
+const Article: React.FC<ArticleProps> = ({
+  url,
+  title,
+  urlToImage,
+  description,
+}) => {
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item>
@@ -31,9 +36,10 @@ const Article: React.FC<ArticleProps> = ({ url, title, urlToImage }) => {
         >
           <Card className="card center">
             <CardContent>
-              <Typography variant="h5" align="center">
+              <Typography variant="h5" align="center" className="card-title">
                 {title}
               </Typography>
+              <Typography align="center">{description}</Typography>
             </CardContent>
             <CardMedia>
               <img src={urlToImage} alt="" className="image center" />
