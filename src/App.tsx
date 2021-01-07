@@ -1,4 +1,4 @@
-import { /*useRef,*/ useState, useEffect } from "react";
+import React, { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "./newsApi";
 import type { ArticleProps } from "./Article";
 import Articles from "./Articles";
@@ -9,6 +9,13 @@ import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
 import "./App.scss";
+import { Router, Switch, Route } from "react-router-dom";
+import Nav from "./Nav";
+import { Home } from "@material-ui/icons";
+import { Login } from "./views/Login";
+import { Signup } from "./views/Signup";
+
+export const websiteTitle = "Gimme The News";
 
 function App() {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
@@ -118,6 +125,18 @@ function App() {
   // ];
 
   const theme: Theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: "#fdcd3d",
+        main: "#f5bf1d",
+        dark: "#dcac1c",
+      },
+      secondary: {
+        light: "#b0ae9c",
+        main: "#a6a383",
+        dark: "#827f66",
+      },
+    },
     typography: {
       fontFamily: '"Inter", sans-serif',
     },
@@ -137,7 +156,27 @@ function App() {
   });
 
   return (
+    // <Router>
     <ThemeProvider theme={theme}>
+      <Nav></Nav>
+      <Typography variant="h2" align="center" className="title">
+        {websiteTitle}
+      </Typography>
+
+      {/* <Switch> */}
+      {/* <Route path="/about">
+            <About />
+          </Route> */}
+      {/* <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route> */}
+      {/* </Switch> */}
       <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item justify="center">
           <Typography id="ratio-slider" align="center" variant="h5">
@@ -166,8 +205,17 @@ function App() {
             ) : null}
           </ErrorBoundary>
         </Grid>
+        <Grid item xs={12}>
+          {loading && (
+            <Typography align="center" variant="h6">
+              Loading...
+            </Typography>
+          )}
+        </Grid>
       </Grid>
     </ThemeProvider>
+    //{" "}
+    // </Router>
   );
 }
 
