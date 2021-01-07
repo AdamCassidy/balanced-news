@@ -127,14 +127,13 @@ function App() {
   const theme: Theme = createMuiTheme({
     palette: {
       primary: {
-        light: "#fdcd3d",
-        main: "#f5bf1d",
-        dark: "#dcac1c",
+        light: "#f6e56d",
+        main: "#f2db2c",
       },
       secondary: {
-        light: "#b0ae9c",
-        main: "#a6a383",
-        dark: "#827f66",
+        light: "#e2eec0",
+        main: "#CEE397",
+        dark: "#b9d86e",
       },
     },
     typography: {
