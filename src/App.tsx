@@ -127,13 +127,10 @@ function App() {
   const theme: Theme = createMuiTheme({
     palette: {
       primary: {
-        light: "#f6e56d",
-        main: "#f2db2c",
+        main: "#E3E36A",
       },
       secondary: {
-        light: "#e2eec0",
-        main: "#CEE397",
-        dark: "#b9d86e",
+        main: "#CBFF8C",
       },
     },
     typography: {
@@ -179,7 +176,7 @@ function App() {
       <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item justify="center">
           <Typography id="ratio-slider" align="center" variant="h5">
-            Slide to adjust ratio of positive vs negative news
+            Slide to adjust chance of good vs bad news
           </Typography>
           <Slider
             defaultValue={50}
