@@ -22,7 +22,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
     [getNews, loading]
   );
   return (
-    <Grid container alignItems="center" justify="center" spacing={4}>
+    <Grid container alignItems="center" justify="center" spacing={5}>
       {articles.map((article, index) => {
         if (articles.length === index + 1) {
           return (

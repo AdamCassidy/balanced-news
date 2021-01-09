@@ -187,7 +187,6 @@ function App() {
             onChange={onSliderChange}
             onChangeCommitted={onSliderChangeCommitted}
             aria-labelledby="ratio-slider"
-            className="slider"
           />
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
