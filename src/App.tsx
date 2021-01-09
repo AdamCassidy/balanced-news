@@ -187,10 +187,11 @@ function App() {
             onChange={onSliderChange}
             onChangeCommitted={onSliderChangeCommitted}
             aria-labelledby="ratio-slider"
+            className="slider"
           />
           {/* <input type="text" ref={searchRef} placeholder="Regular search" /> */}
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {articles ? (
               <Articles
