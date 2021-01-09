@@ -7,9 +7,12 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { websiteTitle } from "./App";
-import { Link, Router } from "react-router-dom";
+import { Router, Link } from "react-router-dom";
 import { Login } from "./views/Login";
 import { Signup } from "./views/Signup";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,24 +48,16 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             {websiteTitle}
           </Typography>
-          {/* <Router>
+          <Router history={history}>
             <div>
-              <Button
-                color="inherit"
-                component={<Link component={Login} />}
-                {...({ to: "/login" } as any)}
-              >
+              <Button color="inherit" component={Link} to="/login">
                 Login
               </Button>
-              <Button
-                color="inherit"
-                component={<Link component={Signup} />}
-                {...({ to: "/signup" } as any)}
-              >
+              <Button color="inherit" component={Link} to="/signup">
                 Sign up
               </Button>
             </div>
-          </Router> */}
+          </Router>
         </Toolbar>
       </AppBar>
     </div>
