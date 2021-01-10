@@ -6,10 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { websiteTitle } from "./App";
+import { websiteTitle } from "../views/home/Home";
 import { Router, Link } from "react-router-dom";
-import { Login } from "./views/Login";
-import { Signup } from "./views/Signup";
+import { Login } from "../views/Login";
+import { Signup } from "../views/Signup";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();

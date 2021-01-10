@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
-import Article from "./Article";
-import type { ArticleProps } from "./Article";
+import Article from "./Article/Article";
+import type { ArticleProps } from "./Article/Article";
 import nextId from "react-id-generator";
 import { Grid } from "@material-ui/core";
 export interface ArticlesProps {

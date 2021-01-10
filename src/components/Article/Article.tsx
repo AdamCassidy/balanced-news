@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import "./Article.scss";
-import "./App.scss";
 export interface ArticleProps {
   description?: string;
   author?: string;
