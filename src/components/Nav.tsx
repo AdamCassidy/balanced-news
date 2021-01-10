@@ -1,4 +1,3 @@
-import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,8 +7,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { websiteTitle } from "../views/home/Home";
 import { Router, Link } from "react-router-dom";
-import { Login } from "../views/Login";
-import { Signup } from "../views/Signup";
 import { createBrowserHistory } from "history";
 
 const history = createBrowserHistory();
@@ -26,6 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
       wordSpacing: 0,
+      textDecoration: "none",
+      color: "black",
     },
   })
 );
@@ -45,18 +44,33 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            {websiteTitle}
-          </Typography>
           <Router history={history}>
-            <div>
-              <Button color="inherit" component={Link} to="/login">
-                Login
-              </Button>
-              <Button color="inherit" component={Link} to="/signup">
-                Sign up
-              </Button>
-            </div>
+            <Typography
+              variant="h6"
+              className={classes.title}
+              component={Link}
+              to="/"
+            >
+              {websiteTitle}
+            </Typography>
+
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+            <Button color="inherit" component={Link} to="/signup">
+              Sign up
+            </Button>
+            {/* <Switch>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/signup">
+                  <Signup />
+                </Route>
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch> */}
           </Router>
         </Toolbar>
       </AppBar>

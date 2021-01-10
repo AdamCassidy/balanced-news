@@ -1,4 +1,4 @@
-import React, { /*useRef,*/ useState, useEffect } from "react";
+import { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "../../newsApi";
 import type { ArticleProps } from "../../components/Article/Article";
 import Articles from "../../components/Articles";
@@ -9,13 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
 import "./Home.scss";
-import { Router, Switch, Route } from "react-router-dom";
 import Nav from "../../components/Nav";
-import { Login } from "../Login";
-import { Signup } from "../Signup";
-import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
 export const websiteTitle = "Gimme The News";
 
 function Home(): JSX.Element {
