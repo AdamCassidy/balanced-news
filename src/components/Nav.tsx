@@ -6,8 +6,11 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { websiteTitle } from "../views/home/Home";
-import { Router, Link } from "react-router-dom";
+import { Router, Link, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import Login from "../views/Login";
+import Signup from "../views/Signup";
+import Home from "../views/home/Home";
 
 const history = createBrowserHistory();
 
@@ -60,17 +63,6 @@ export default function ButtonAppBar() {
             <Button color="inherit" component={Link} to="/signup">
               Sign up
             </Button>
-            {/* <Switch>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/signup">
-                  <Signup />
-                </Route>
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch> */}
           </Router>
         </Toolbar>
       </AppBar>

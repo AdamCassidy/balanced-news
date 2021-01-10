@@ -3,10 +3,12 @@ import SignupForm from "../components/SignupForm";
 
 const onSubmit = () => {};
 
-export const Signup = () => {
+const Signup = () => {
   return (
     <div>
       <SignupForm onSubmit={onSubmit}></SignupForm>
     </div>
   );
 };
+
+export default Signup;

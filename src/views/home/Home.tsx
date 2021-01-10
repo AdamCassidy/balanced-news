@@ -6,10 +6,8 @@ import ErrorBoundary from "../../components/ErrorBoundary";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { createMuiTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { ChangeEvent } from "react";
 import "./Home.scss";
-import Nav from "../../components/Nav";
 
 export const websiteTitle = "Gimme The News";
 
@@ -114,36 +112,8 @@ function Home(): JSX.Element {
   //   { value: 99, label: "1:0" },
   // ];
 
-  const theme: Theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: "#E3E36A",
-      },
-      secondary: {
-        main: "#CBFF8C",
-      },
-    },
-    typography: {
-      fontFamily: '"Inter", sans-serif',
-    },
-    overrides: {
-      MuiSlider: {
-        thumb: {
-          color: "yellow",
-        },
-        track: {
-          color: "green",
-        },
-        rail: {
-          color: "red",
-        },
-      },
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme}>
-      <Nav></Nav>
+    <>
       <Typography variant="h2" align="center" className="title">
         {websiteTitle}
       </Typography>
@@ -183,7 +153,7 @@ function Home(): JSX.Element {
           )}
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </>
   );
 }
 
