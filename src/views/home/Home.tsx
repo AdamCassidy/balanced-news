@@ -1,4 +1,4 @@
-import { /*useRef,*/ useState, useEffect } from "react";
+import React, { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "../../newsApi";
 import type { ArticleProps } from "../../components/Article/Article";
 import Articles from "../../components/Articles";

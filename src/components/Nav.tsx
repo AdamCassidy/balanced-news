@@ -6,13 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { websiteTitle } from "../views/home/Home";
-import { Router, Link, Switch, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
-import Login from "../views/Login";
-import Signup from "../views/Signup";
-import Home from "../views/home/Home";
-
-const history = createBrowserHistory();
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ButtonAppBar() {
+function ButtonAppBar() {
   const classes = useStyles();
 
   return (
@@ -47,25 +41,25 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Router history={history}>
-            <Typography
-              variant="h6"
-              className={classes.title}
-              component={Link}
-              to="/"
-            >
-              {websiteTitle}
-            </Typography>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            component={Link}
+            to="/"
+          >
+            {websiteTitle}
+          </Typography>
 
-            <Button color="inherit" component={Link} to="/login">
-              Login
-            </Button>
-            <Button color="inherit" component={Link} to="/signup">
-              Sign up
-            </Button>
-          </Router>
+          <Button color="inherit" component={Link} to="/login">
+            Login
+          </Button>
+          <Button color="inherit" component={Link} to="/signup">
+            Sign up
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default ButtonAppBar;
