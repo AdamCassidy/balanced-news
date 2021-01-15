@@ -4,6 +4,10 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, Theme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core";
+import { AuthProvider } from "./contexts/AuthContext";
+
+const domain: string = process.env.REACT_APP_AUTH0_DOMAIN || "";
+const clientId: string = process.env.REACT_APP_AUTH0_CLIENT_ID || "";
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -35,11 +39,13 @@ const theme: Theme = createMuiTheme({
 // const render = (Component) => {
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

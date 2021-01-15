@@ -29,7 +29,7 @@ const LoginForm: React.FC<Props> = () => {
         <Form>
           <div>
             <Field
-              type="input"
+              type="email"
               name="email"
               placeholder="Email"
               variant="outlined"
@@ -38,7 +38,7 @@ const LoginForm: React.FC<Props> = () => {
           </div>
           <div>
             <Field
-              type="input"
+              type="password"
               name="password"
               placeholder="Password"
               variant="outlined"

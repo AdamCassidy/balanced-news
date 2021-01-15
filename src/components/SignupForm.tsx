@@ -1,7 +1,10 @@
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import { TextField } from "formik-material-ui";
 import React from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
 
 interface Values {
   name: string;
@@ -15,6 +18,7 @@ interface Props {
 }
 
 const SignupForm: React.FC<Props> = () => {
+  const { signup } = useAuth();
   return (
     <Formik
       initialValues={{
@@ -25,7 +29,9 @@ const SignupForm: React.FC<Props> = () => {
       }}
       onSubmit={(values: Values, { setSubmitting }) => {
         setSubmitting(true);
-        console.log(values);
+        try {
+          if (signup) signup(values.email, values.password);
+        } catch (err) {}
         setSubmitting(false);
       }}
     >
