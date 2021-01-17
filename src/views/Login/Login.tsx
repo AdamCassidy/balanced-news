@@ -21,7 +21,7 @@ const Login = () => {
       </Grid>
       <Grid item xs={12}>
         <Typography align="center" className="login-contingency-link">
-          Need to log in? <Link to="/login"> Log In</Link>
+          Need to sign up? <Link to="/signup"> Sign Up</Link>
         </Typography>
       </Grid>
     </Grid>
