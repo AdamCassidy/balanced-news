@@ -5,7 +5,6 @@ import { TextField } from "formik-material-ui";
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
-
 interface Values {
   name: string;
   email: string;
@@ -19,6 +18,8 @@ interface Props {
 
 const SignupForm: React.FC<Props> = () => {
   const { signup } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <Formik
       initialValues={{
@@ -27,16 +28,39 @@ const SignupForm: React.FC<Props> = () => {
         password: "",
         confirmPassword: "",
       }}
-      onSubmit={(values: Values, { setSubmitting }) => {
+      validate={(values) => {
+        const errors: { email: string; confirmPassword: string } = {
+          email: "",
+          confirmPassword: "",
+        };
+
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+
+        if (values.password !== values.confirmPassword)
+          errors.confirmPassword = "Passwords do not match";
+
+        return errors;
+      }}
+      onSubmit={async (values: Values, { setSubmitting }) => {
         setSubmitting(true);
         try {
-          if (signup) signup(values.email, values.password);
-        } catch (err) {}
+          setError("");
+          if (signup) await signup(values.email, values.password);
+        } catch (err) {
+          setError(err);
+        }
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <Form>
+          {error && <Alert severity="error">{error}</Alert>}
           <div>
             <Field
               type="input"
@@ -55,6 +79,7 @@ const SignupForm: React.FC<Props> = () => {
               component={TextField}
             />
           </div>
+
           <div>
             <Field
               type="password"
@@ -64,6 +89,7 @@ const SignupForm: React.FC<Props> = () => {
               component={TextField}
             />
           </div>
+
           <div>
             <Field
               type="password"
@@ -73,6 +99,7 @@ const SignupForm: React.FC<Props> = () => {
               component={TextField}
             />
           </div>
+
           <Button type="submit" variant="outlined" disabled={isSubmitting}>
             Submit
           </Button>
