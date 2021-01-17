@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./views/home/Home";
-import Login from "./views/Login";
-import Signup from "./views/Signup";
+import Login from "./views/Login/Login";
+import Signup from "./views/Signup/Signup";
 import Nav from "./components/Nav";
 
 function App() {

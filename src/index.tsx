@@ -6,9 +6,6 @@ import { createMuiTheme, Theme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core";
 import { AuthProvider } from "./contexts/AuthContext";
 
-const domain: string = process.env.REACT_APP_AUTH0_DOMAIN || "";
-const clientId: string = process.env.REACT_APP_AUTH0_CLIENT_ID || "";
-
 const theme: Theme = createMuiTheme({
   palette: {
     primary: {

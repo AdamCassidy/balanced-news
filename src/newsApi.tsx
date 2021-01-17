@@ -4,7 +4,7 @@ const baseUrl = "https://newsapi.org/v2/";
 const everythingUrl = baseUrl + "everything/";
 
 export const getArticles = async (search: string) => {
-  let url = everythingUrl + "?language=en&pageSize=100";
+  let url = everythingUrl + "?language=en&pageSize=10";
   if (search !== "") {
     url += "&q=" + search;
   }

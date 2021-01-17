@@ -48,7 +48,7 @@ const SignupForm: React.FC<Props> = () => {
           </div>
           <div>
             <Field
-              type="input"
+              type="email"
               name="email"
               placeholder="Email"
               variant="outlined"
@@ -57,7 +57,7 @@ const SignupForm: React.FC<Props> = () => {
           </div>
           <div>
             <Field
-              type="input"
+              type="password"
               name="password"
               placeholder="Password"
               variant="outlined"
@@ -66,7 +66,7 @@ const SignupForm: React.FC<Props> = () => {
           </div>
           <div>
             <Field
-              type="input"
+              type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
               variant="outlined"
