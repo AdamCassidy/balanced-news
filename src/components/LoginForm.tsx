@@ -24,7 +24,11 @@ const LoginForm: React.FC<Props> = () => {
       onSubmit={async (values: Values, { setSubmitting }) => {
         setSubmitting(true);
         try {
+<<<<<<< HEAD
           if (login) await login(values.email, values.password);
+=======
+          if (login) login(values.email, values.password);
+>>>>>>> 42060bbced5ea0c47d298854ef75a56fb4646a73
         } catch (err) {
           console.log(err);
         }
