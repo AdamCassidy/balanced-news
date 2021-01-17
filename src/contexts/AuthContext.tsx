@@ -23,9 +23,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
-  const [loading, setloading] = useState<boolean>(true);
-
-  setLoading(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const signup = (email: string, password: string) => {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -35,6 +33,7 @@ export const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
+      setLoading(false);
       if (user) setCurrentUser(user);
     });
     return unsuscribe;
@@ -42,7 +41,11 @@ export const AuthProvider = ({ children }) => {
 
   const value = { login, signup, currentUser };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthContext;
