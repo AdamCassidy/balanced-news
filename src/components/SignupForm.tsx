@@ -1,10 +1,20 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { TextField } from "formik-material-ui";
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
+import * as yup from "yup";
+import { useHistory } from "react-router-dom";
+import { ClassNameMap } from "@material-ui/core/styles/withStyles";
+
+const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
+  alert: {
+    width: "569px",
+  },
+});
+
 interface Values {
   name: string;
   email: string;
@@ -12,13 +22,18 @@ interface Values {
   confirmPassword: string;
 }
 
-interface Props {
-  onSubmit: (values: Values) => void;
-}
-
-const SignupForm: React.FC<Props> = () => {
+const SignupForm: React.FC = () => {
+  const classes: ClassNameMap<"alert"> = useStyles();
   const { signup } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const history = useHistory();
+
+  const userSchema = yup.object().shape({
+    name: yup.string(),
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+    confirmPassword: yup.string().required(),
+  });
 
   return (
     <Formik
@@ -28,39 +43,28 @@ const SignupForm: React.FC<Props> = () => {
         password: "",
         confirmPassword: "",
       }}
-      validate={(values) => {
-        const errors: { email: string; confirmPassword: string } = {
-          email: "",
-          confirmPassword: "",
-        };
-
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-
-        if (values.password !== values.confirmPassword)
-          errors.confirmPassword = "Passwords do not match";
-
-        return errors;
-      }}
+      validationSchema={userSchema}
       onSubmit={async (values: Values, { setSubmitting }) => {
+        console.log("Initialized submit");
         setSubmitting(true);
         try {
           setError("");
           if (signup) await signup(values.email, values.password);
+          history.push("/");
         } catch (err) {
-          setError(err);
+          console.log(err);
+          setError(err.message);
         }
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <Form>
-          {error && <Alert severity="error">{error}</Alert>}
+          {error && (
+            <Alert severity="error" className={classes.alert}>
+              {error}
+            </Alert>
+          )}
           <div>
             <Field
               type="input"
@@ -99,7 +103,6 @@ const SignupForm: React.FC<Props> = () => {
               component={TextField}
             />
           </div>
-
           <Button type="submit" variant="outlined" disabled={isSubmitting}>
             Submit
           </Button>

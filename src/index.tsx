@@ -19,6 +19,17 @@ const theme: Theme = createMuiTheme({
     fontFamily: '"Inter", sans-serif',
   },
   overrides: {
+    MuiOutlinedInput: {
+      root: {
+        width: "600px",
+      },
+    },
+    MuiCard: {
+      root: {
+        paddingLeft: "1.2rem",
+        paddingRight: "1.2rem",
+      },
+    },
     MuiSlider: {
       thumb: {
         color: "yellow",
@@ -37,11 +48,11 @@ const theme: Theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

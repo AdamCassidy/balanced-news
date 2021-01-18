@@ -1,38 +1,65 @@
 import { Field, Form, Formik } from "formik";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
 import { TextField } from "formik-material-ui";
-import React from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
+import * as yup from "yup";
+import { Alert } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
+import { ClassNameMap } from "@material-ui/core/styles/withStyles";
+
+const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
+  alert: {
+    width: "569px",
+  },
+});
 
 interface Values {
   email: string;
   password: string;
 }
 
-interface Props {
-  onSubmit: (values: Values) => void;
-}
-
-const LoginForm: React.FC<Props> = () => {
+const LoginForm: React.FC = () => {
+  const classes: ClassNameMap<"alert"> = useStyles();
   const { login } = useAuth();
+  const [error, setError] = useState<string | null>("");
+  const history = useHistory();
+
+  const userSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(6).required(),
+  });
+
   return (
     <Formik
       initialValues={{
         email: "",
         password: "",
       }}
+      validationSchema={userSchema}
       onSubmit={async (values: Values, { setSubmitting }) => {
+        console.log("Initialized submit");
         setSubmitting(true);
         try {
+          setError("");
           if (login) await login(values.email, values.password);
+          history.push("/");
         } catch (err) {
           console.log(err);
+          setError(err.message);
         }
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <Form>
+          <div>
+            {error && (
+              <Alert severity="error" className={classes.alert}>
+                {error}
+              </Alert>
+            )}
+          </div>
           <div>
             <Field
               type="email"
