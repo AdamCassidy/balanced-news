@@ -61,7 +61,13 @@ const SignupForm: React.FC = () => {
       {({ isSubmitting }) => (
         <Form>
           {error && (
-            <Alert severity="error" className={classes.alert}>
+            <Alert
+              severity="error"
+              className={classes.alert}
+              onClose={() => {
+                setError("");
+              }}
+            >
               {error}
             </Alert>
           )}

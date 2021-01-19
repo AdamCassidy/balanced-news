@@ -55,7 +55,13 @@ const LoginForm: React.FC = () => {
         <Form>
           <div>
             {error && (
-              <Alert severity="error" className={classes.alert}>
+              <Alert
+                severity="error"
+                className={classes.alert}
+                onClose={() => {
+                  setError(null);
+                }}
+              >
                 {error}
               </Alert>
             )}

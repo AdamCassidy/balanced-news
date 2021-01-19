@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
+import { Grid, Card, CardContent } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,41 +46,56 @@ function ButtonAppBar() {
   };
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            component={Link}
-            to="/"
-          >
-            {websiteTitle}
-          </Typography>
+      <Grid container justify="center">
+        <Grid item xs={12}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                variant="h6"
+                className={classes.title}
+                component={Link}
+                to="/"
+              >
+                {websiteTitle}
+              </Typography>
 
-          {!currentUser && (
-            <Button color="inherit" component={Link} to="/login">
-              Login
-            </Button>
+              {!currentUser && (
+                <Button color="inherit" component={Link} to="/login">
+                  Login
+                </Button>
+              )}
+              {currentUser && (
+                <Button color="inherit" onClick={dispatchLogout}>
+                  Logout
+                </Button>
+              )}
+              <Button color="inherit" component={Link} to="/signup">
+                Sign up
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </Grid>
+        <Grid item xs={7}>
+          {error && (
+            <Alert
+              severity="error"
+              onClose={() => {
+                setError(null);
+              }}
+            >
+              {error}asdfasbadfbedfabd
+            </Alert>
           )}
-          {currentUser && (
-            <Button color="inherit" onClick={dispatchLogout}>
-              Logout
-            </Button>
-          )}
-          <Button color="inherit" component={Link} to="/signup">
-            Sign up
-          </Button>
-        </Toolbar>
-      </AppBar>
-      {error && <Alert severity="error">{error}</Alert>}
+        </Grid>
+      </Grid>
     </div>
   );
 }
