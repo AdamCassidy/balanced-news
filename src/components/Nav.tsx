@@ -7,6 +7,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { websiteTitle } from "../views/home/Home";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,7 +31,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function ButtonAppBar() {
   const classes = useStyles();
+  const { currentUser, logout } = useAuth();
+  const [error, setError] = useState<string | null>("");
 
+  const dispatchLogout = () => {
+    try {
+      setError("");
+      if (logout) logout();
+    } catch (err) {
+      console.log(err.message);
+      setError(err.message);
+    }
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -50,14 +64,22 @@ function ButtonAppBar() {
             {websiteTitle}
           </Typography>
 
-          <Button color="inherit" component={Link} to="/login">
-            Login
-          </Button>
+          {!currentUser && (
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+          )}
+          {currentUser && (
+            <Button color="inherit" onClick={dispatchLogout}>
+              Logout
+            </Button>
+          )}
           <Button color="inherit" component={Link} to="/signup">
             Sign up
           </Button>
         </Toolbar>
       </AppBar>
+      {error && <Alert severity="error">{error}</Alert>}
     </div>
   );
 }

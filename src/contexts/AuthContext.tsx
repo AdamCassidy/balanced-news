@@ -13,6 +13,7 @@ interface ContextProps {
     email: string,
     password: string
   ) => Promise<firebase.auth.UserCredential>;
+  logout?: () => Promise<void>;
 }
 
 const AuthContext: React.Context<ContextProps> = React.createContext({});
@@ -31,6 +32,10 @@ export const AuthProvider = ({ children }) => {
   const login = (email: string, password: string) => {
     return auth.signInWithEmailAndPassword(email, password);
   };
+  const logout = () => {
+    return auth.signOut();
+  };
+
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
@@ -39,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     return unsuscribe;
   }, []);
 
-  const value = { login, signup, currentUser };
+  const value = { login, logout, signup, currentUser };
 
   return (
     <AuthContext.Provider value={value}>
