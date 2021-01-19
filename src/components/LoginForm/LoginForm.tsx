@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
         console.log("Initialized submit");
         setSubmitting(true);
         try {
-          setError("");
+          setError(null);
           if (login) await login(values.email, values.password);
           history.push("/");
         } catch (err) {
@@ -55,7 +55,13 @@ const LoginForm: React.FC = () => {
         <Form>
           <div>
             {error && (
-              <Alert severity="error" className={classes.alert}>
+              <Alert
+                severity="error"
+                className={classes.alert}
+                onClose={() => {
+                  setError(null);
+                }}
+              >
                 {error}
               </Alert>
             )}
