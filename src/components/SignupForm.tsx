@@ -28,11 +28,24 @@ const SignupForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const history = useHistory();
 
+  const lowercaseRegex: RegExp = /(?=.*[a-z])/;
+  const uppercaseRegex: RegExp = /(?=.*[A-Z])/;
+  const numberRegex: RegExp = /(?=.*[0-9])/;
+
   const userSchema = yup.object().shape({
     name: yup.string(),
     email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-    confirmPassword: yup.string().required(),
+    password: yup
+      .string()
+      .min(6)
+      .matches(lowercaseRegex, "at least one lowercase required")
+      .matches(uppercaseRegex, "at least one uppercase required")
+      .matches(numberRegex, "at least one number required")
+      .required(),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "password must be the same")
+      .required(),
   });
 
   return (
