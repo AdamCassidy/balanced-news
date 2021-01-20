@@ -4,7 +4,7 @@ import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import "./Signup.css";
 import { Link } from "react-router-dom";
 
-const Signup = () => {
+const Signup: React.FC = () => {
   return (
     <Grid container justify="center">
       <Card>

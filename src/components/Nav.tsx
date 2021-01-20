@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
-import { Grid, Card, CardContent } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
       wordSpacing: 0,
       textDecoration: "none",
       color: "black",
+    },
+    centerText: {
+      textAlign: "center",
     },
   })
 );
@@ -77,7 +80,12 @@ function ButtonAppBar() {
                   Logout
                 </Button>
               )}
-              <Button color="inherit" component={Link} to="/signup">
+              <Button
+                color="inherit"
+                className={classes.centerText}
+                component={Link}
+                to="/signup"
+              >
                 Sign up
               </Button>
             </Toolbar>

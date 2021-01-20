@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./Login.css";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <Grid container justify="center">
       <Card>
