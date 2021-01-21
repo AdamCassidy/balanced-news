@@ -40,6 +40,9 @@ export const AuthProvider = ({ children }) => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
       if (user) setCurrentUser(user);
+      else {
+        setCurrentUser(null);
+      }
     });
     return unsuscribe;
   }, []);
