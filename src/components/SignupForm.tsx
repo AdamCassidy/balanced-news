@@ -1,5 +1,5 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Button, makeStyles } from "@material-ui/core";
+import { Field, Form, Formik } from "formik";
+import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { TextField } from "formik-material-ui";
 import React from "react";
@@ -9,11 +9,19 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import { ClassNameMap } from "@material-ui/core/styles/withStyles";
 
-const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
-  alert: {
-    maxWidth: "567px",
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    alert: {
+      maxWidth: "9rem",
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "17rem",
+      },
+      [theme.breakpoints.down("lg")]: {
+        maxWidth: "567px",
+      },
+    },
+  })
+);
 
 interface Values {
   name: string;
