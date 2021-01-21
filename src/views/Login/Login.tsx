@@ -7,7 +7,7 @@ import "./Login.css";
 const Login: React.FC = () => {
   return (
     <Grid container justify="center">
-      <Card>
+      <Card className="card">
         <CardContent>
           <Grid item xs={12}>
             <Typography align="center" variant="h3" className="title">

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Signup: React.FC = () => {
   return (
     <Grid container justify="center">
-      <Card>
+      <Card className="card">
         <CardContent>
           <Grid item xs={12}>
             <Typography variant="h3" align="center" className="title">
