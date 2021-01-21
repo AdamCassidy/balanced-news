@@ -21,7 +21,7 @@ let theme: Theme = createMuiTheme({
   overrides: {
     MuiOutlinedInput: {
       root: {
-        width: "600px",
+        maxWidth: "600px",
       },
     },
     MuiCard: {
