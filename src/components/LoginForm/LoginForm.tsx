@@ -6,28 +6,12 @@ import { useAuth } from "../../contexts/AuthContext";
 import * as yup from "yup";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
-import { ClassNameMap } from "@material-ui/core/styles/withStyles";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    alert: {
-      maxWidth: "9rem",
-      [theme.breakpoints.down("md")]: {
-        maxWidth: "17rem",
-      },
-      [theme.breakpoints.down("lg")]: {
-        maxWidth: "567px",
-      },
-    },
-  })
-);
 interface Values {
   email: string;
   password: string;
 }
 
 const LoginForm: React.FC = () => {
-  const classes: ClassNameMap<"alert"> = useStyles();
   const { login } = useAuth();
   const [error, setError] = useState<string | null>("");
   const history = useHistory();
@@ -64,7 +48,6 @@ const LoginForm: React.FC = () => {
             {error && (
               <Alert
                 severity="error"
-                className={classes.alert}
                 onClose={() => {
                   setError(null);
                 }}

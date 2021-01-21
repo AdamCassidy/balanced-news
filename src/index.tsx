@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, Theme } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider, responsiveFontSizes } from "@material-ui/core";
 import { AuthProvider } from "./contexts/AuthContext";
 
-const theme: Theme = createMuiTheme({
+let theme: Theme = createMuiTheme({
   palette: {
     primary: {
       main: "#E3E36A",
@@ -43,6 +43,7 @@ const theme: Theme = createMuiTheme({
     },
   },
 });
+theme = responsiveFontSizes(theme);
 
 // const render = (Component) => {
 ReactDOM.render(

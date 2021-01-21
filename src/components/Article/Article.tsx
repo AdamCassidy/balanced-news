@@ -11,7 +11,7 @@ import "./Article.scss";
 export interface ArticleProps {
   description?: string;
   author?: string;
-  urlToImage?: string;
+  urlToImage: string;
   content?: string;
   publishedAt?: string;
   title: string;
