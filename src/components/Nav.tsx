@@ -80,14 +80,14 @@ function ButtonAppBar() {
                   Logout
                 </Button>
               )}
-              <Button
+              {!currentUser && <Button
                 color="inherit"
                 className={classes.centerText}
                 component={Link}
                 to="/signup"
               >
                 Sign up
-              </Button>
+              </Button>}
             </Toolbar>
           </AppBar>
         </Grid>
