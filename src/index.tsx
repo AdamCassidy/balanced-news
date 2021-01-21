@@ -19,11 +19,6 @@ let theme: Theme = createMuiTheme({
     fontFamily: '"Inter", sans-serif',
   },
   overrides: {
-    MuiOutlinedInput: {
-      root: {
-        maxWidth: "600px",
-      },
-    },
     MuiCard: {
       root: {
         paddingLeft: "1.2rem",

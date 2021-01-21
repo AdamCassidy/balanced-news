@@ -33,7 +33,7 @@ const Article: React.FC<ArticleProps> = ({
           rel="noopener noreferrer"
           style={{ textDecoration: "none" }}
         >
-          <Card className="card center">
+          <Card className="article-card center">
             <CardContent>
               <Typography variant="h5" align="center" className="card-title">
                 {title}
@@ -41,7 +41,7 @@ const Article: React.FC<ArticleProps> = ({
               <Typography align="center">{description}</Typography>
             </CardContent>
             <CardMedia>
-              <img src={urlToImage} alt="" className="image center" />
+              <img src={urlToImage} alt="" className="article-image center" />
             </CardMedia>
           </Card>
         </Link>

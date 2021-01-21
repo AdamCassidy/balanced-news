@@ -10,7 +10,9 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
-import { Grid } from "@material-ui/core";
+import { Grid, Modal } from "@material-ui/core";
+import Signup from "../views/Signup/Signup";
+import Login from "../views/Login/Login";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
     centerText: {
       textAlign: "center",
     },
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   })
 );
 
@@ -37,6 +44,8 @@ function ButtonAppBar() {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState<string | null>("");
+  const [signupOpen, setSignupOpen] = useState<boolean>(false);
+  const [loginOpen, setLoginOpen] = useState<boolean>(false);
 
   const dispatchLogout = () => {
     try {
@@ -47,6 +56,17 @@ function ButtonAppBar() {
       setError(err.message);
     }
   };
+
+  const handleOpen = (form: string) => {
+    if (form === "signup") setSignupOpen(true);
+    else if (form === "login") setLoginOpen(true);
+  };
+
+  const handleClose = (form: string) => {
+    if (form === "signup") setSignupOpen(false);
+    else if (form === "login") setLoginOpen(false);
+  };
+
   return (
     <div className={classes.root}>
       <Grid container justify="center">
@@ -71,7 +91,7 @@ function ButtonAppBar() {
               </Typography>
 
               {!currentUser && (
-                <Button color="inherit" component={Link} to="/login">
+                <Button color="inherit" onClick={() => handleOpen("login")}>
                   Login
                 </Button>
               )}
@@ -80,14 +100,29 @@ function ButtonAppBar() {
                   Logout
                 </Button>
               )}
-              {!currentUser && <Button
-                color="inherit"
-                className={classes.centerText}
-                component={Link}
-                to="/signup"
+              {!currentUser && (
+                <Button
+                  color="inherit"
+                  className={classes.centerText}
+                  onClick={() => handleOpen("signup")}
+                >
+                  Sign up
+                </Button>
+              )}
+              <Modal
+                open={signupOpen}
+                className={classes.modal}
+                onClose={() => handleClose("signup")}
               >
-                Sign up
-              </Button>}
+                {<Signup></Signup>}
+              </Modal>
+              <Modal
+                open={loginOpen}
+                className={classes.modal}
+                onClose={() => handleClose("login")}
+              >
+                {<Login></Login>}
+              </Modal>
             </Toolbar>
           </AppBar>
         </Grid>

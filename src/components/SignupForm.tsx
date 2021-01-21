@@ -11,7 +11,7 @@ import { ClassNameMap } from "@material-ui/core/styles/withStyles";
 
 const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
   alert: {
-    maxWidth: "567px",
+    maxWidth: "243px",
   },
 });
 interface Values {

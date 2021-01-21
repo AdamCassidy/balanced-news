@@ -8,11 +8,14 @@ import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
 import { ClassNameMap } from "@material-ui/core/styles/withStyles";
 
-const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
-  alert: {
-    maxWidth: "567px",
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    alert: {
+      maxWidth: "243px",
+    },
+  })
+);
+
 interface Values {
   email: string;
   password: string;
