@@ -7,7 +7,13 @@ import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
+import { ClassNameMap } from "@material-ui/core/styles/withStyles";
 
+const useStyles: (props?: any) => ClassNameMap<"alert"> = makeStyles({
+  alert: {
+    maxWidth: "567px",
+  },
+});
 interface Values {
   name: string;
   email: string;
@@ -19,6 +25,7 @@ const SignupForm: React.FC = () => {
   const { signup } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const history = useHistory();
+  const classes = useStyles();
 
   const lowercaseRegex: RegExp = /(?=.*[a-z])/;
   const uppercaseRegex: RegExp = /(?=.*[A-Z])/;
@@ -68,6 +75,7 @@ const SignupForm: React.FC = () => {
           {error && (
             <Alert
               severity="error"
+              className={classes.alert}
               onClose={() => {
                 setError(null);
               }}
