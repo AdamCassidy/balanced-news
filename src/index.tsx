@@ -19,12 +19,6 @@ let theme: Theme = createMuiTheme({
     fontFamily: '"Inter", sans-serif',
   },
   overrides: {
-    MuiCard: {
-      root: {
-        paddingLeft: "1.2rem",
-        paddingRight: "1.2rem",
-      },
-    },
     MuiSlider: {
       thumb: {
         color: "yellow",

@@ -1,12 +1,11 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import "./Login.scss";
 
 const Login: React.FC = () => {
   return (
-    <Card>
+    <Card className="login-card">
       <CardContent>
         <Grid item>
           <Typography align="center" variant="h3" className="login-title">

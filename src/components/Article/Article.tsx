@@ -33,7 +33,7 @@ const Article: React.FC<ArticleProps> = ({
           rel="noopener noreferrer"
           style={{ textDecoration: "none" }}
         >
-          <Card className="article-card center">
+          <Card className="article-card">
             <CardContent>
               <Typography variant="h5" align="center" className="card-title">
                 {title}
