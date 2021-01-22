@@ -1,5 +1,5 @@
 import React from "react";
-import SignupForm from "../../components/SignupForm";
+import SignupForm from "./SignupForm";
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import "./Signup.scss";
 import { Link } from "react-router-dom";

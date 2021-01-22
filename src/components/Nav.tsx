@@ -11,8 +11,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
 import { Grid, Modal } from "@material-ui/core";
-import Signup from "../views/Signup/Signup";
-import Login from "../views/Login/Login";
+import Signup from "./Signup/Signup";
+import Login from "./Login/Login";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,7 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginForm from "./LoginForm";
 import "./Login.scss";
 
 const Login: React.FC = () => {

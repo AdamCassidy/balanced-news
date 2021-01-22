@@ -3,7 +3,7 @@ import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { TextField } from "formik-material-ui";
 import React from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
