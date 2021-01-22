@@ -16,11 +16,6 @@ const Login: React.FC = () => {
         <Grid item>
           <LoginForm></LoginForm>
         </Grid>
-        <Grid item>
-          <Typography align="center" className="login-contingency-link">
-            Need to sign up? <Link to="/signup"> Sign Up</Link>
-          </Typography>
-        </Grid>
       </CardContent>
     </Card>
   );
