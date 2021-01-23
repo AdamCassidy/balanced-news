@@ -108,14 +108,10 @@ function Home(): JSX.Element {
     <>
       <Grid container justify="center">
         <Grid item>
-          <Typography variant="h2" align="center" className="titleFirst">
-            Gimme{" "}
-      </Typography>
-          <Typography variant="h2" align="center" className="titleMid">
-            The{" "}
-          </Typography>
-          <Typography variant="h2" align="center" className="titleLast">
-            News
+          <Typography variant="h2" align="center" className="fullTitle">
+            <span className="titleFirst">Gimme </span>
+            <span className="titleMid">The </span>
+            <span className="titleLast">News</span>
           </Typography>
         </Grid>
       </Grid>

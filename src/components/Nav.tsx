@@ -24,26 +24,29 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
     },
     titleFirst: {
-      wordSpacing: 0,
+      wordSpacing: "-0.1rem",
       textDecoration: "none",
       color: "green",
       textShadow:
         "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
     },
     titleMid: {
-      wordSpacing: 0,
+      wordSpacing: "-0.1rem",
+
       textDecoration: "none",
       color: "yellow",
       textShadow:
         "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
     },
     titleLast: {
-      flexGrow: 1,
-      wordSpacing: 0,
       textDecoration: "none",
       color: "red",
       textShadow:
         "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+    },
+    fullTitle: {
+      textDecoration: "none",
+      flexGrow: 1,
     },
     centerText: {
       textAlign: "center",
@@ -97,49 +100,31 @@ function ButtonAppBar() {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography
-                variant="h6"
-                className={classes.titleFirst}
-                component={Link}
-                to="/"
-              >
-                Gimme{" "}
-              </Typography>
-              <Typography
-                variant="h6"
-                className={classes.titleMid}
-                component={Link}
-                to="/"
-              >
-                The{" "}
-              </Typography>
-              <Typography
-                variant="h6"
-                className={classes.titleLast}
-                component={Link}
-                to="/"
-              >
-                News
-              </Typography>
+              <div className={classes.fullTitle}>
+                <Typography variant="h6">
+                  <span className={classes.titleFirst}>Gimme </span>
+                  <span className={classes.titleMid}>The </span>
+                  <span className={classes.titleLast}>News</span>
+                </Typography>
+              </div>
 
-              {!currentUser && (
-                <Button color="inherit" onClick={() => handleOpen("login")}>
-                  Login
-                </Button>
-              )}
-              {currentUser && (
+              {currentUser ? (
                 <Button color="inherit" onClick={dispatchLogout}>
                   Logout
                 </Button>
-              )}
-              {!currentUser && (
-                <Button
-                  color="inherit"
-                  className={classes.centerText}
-                  onClick={() => handleOpen("signup")}
-                >
-                  Sign up
-                </Button>
+              ) : (
+                <>
+                  <Button color="inherit" onClick={() => handleOpen("login")}>
+                    Login
+                  </Button>
+                  <Button
+                    color="inherit"
+                    className={classes.centerText}
+                    onClick={() => handleOpen("signup")}
+                  >
+                    Sign up
+                  </Button>
+                </>
               )}
               <Modal
                 open={signupOpen}
