@@ -23,11 +23,27 @@ const useStyles = makeStyles((theme: Theme) =>
     menuButton: {
       marginRight: theme.spacing(2),
     },
-    title: {
+    titleFirst: {
+      wordSpacing: 0,
+      textDecoration: "none",
+      color: "green",
+      textShadow:
+        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+    },
+    titleMid: {
+      wordSpacing: 0,
+      textDecoration: "none",
+      color: "yellow",
+      textShadow:
+        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+    },
+    titleLast: {
       flexGrow: 1,
       wordSpacing: 0,
       textDecoration: "none",
-      color: "black",
+      color: "red",
+      textShadow:
+        "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
     },
     centerText: {
       textAlign: "center",
@@ -83,11 +99,27 @@ function ButtonAppBar() {
               </IconButton>
               <Typography
                 variant="h6"
-                className={classes.title}
+                className={classes.titleFirst}
                 component={Link}
                 to="/"
               >
-                {websiteTitle}
+                Gimme{" "}
+              </Typography>
+              <Typography
+                variant="h6"
+                className={classes.titleMid}
+                component={Link}
+                to="/"
+              >
+                The{" "}
+              </Typography>
+              <Typography
+                variant="h6"
+                className={classes.titleLast}
+                component={Link}
+                to="/"
+              >
+                News
               </Typography>
 
               {!currentUser && (

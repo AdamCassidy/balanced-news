@@ -104,19 +104,21 @@ function Home(): JSX.Element {
     getNews();
   };
 
-  // const marks: { value: number; label: string }[] = [
-  //   { value: 0, label: "0:1" },
-  //   { value: 25, label: "1:3" },
-  //   { value: 50, label: "1:1" },
-  //   { value: 75, label: "3:1" },
-  //   { value: 99, label: "1:0" },
-  // ];
-
   return (
     <>
-      <Typography variant="h2" align="center" className="title">
-        {websiteTitle}
+      <Grid container justify="center">
+        <Grid item>
+          <Typography variant="h2" align="center" className="titleFirst">
+            Gimme{" "}
       </Typography>
+          <Typography variant="h2" align="center" className="titleMid">
+            The{" "}
+          </Typography>
+          <Typography variant="h2" align="center" className="titleLast">
+            News
+          </Typography>
+        </Grid>
+      </Grid>
 
       <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item justify="center">
