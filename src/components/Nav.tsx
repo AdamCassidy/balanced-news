@@ -100,13 +100,16 @@ function ButtonAppBar() {
               >
                 <MenuIcon />
               </IconButton>
-              <div className={classes.fullTitle}>
-                <Typography variant="h6">
-                  <span className={classes.titleFirst}>Gimme </span>
-                  <span className={classes.titleMid}>The </span>
-                  <span className={classes.titleLast}>News</span>
-                </Typography>
-              </div>
+              <Typography
+                variant="h6"
+                component={Link}
+                to="/"
+                className={classes.fullTitle}
+              >
+                <span className={classes.titleFirst}>Gimme </span>
+                <span className={classes.titleMid}>the </span>
+                <span className={classes.titleLast}>News</span>
+              </Typography>
 
               {currentUser ? (
                 <Button color="inherit" onClick={dispatchLogout}>

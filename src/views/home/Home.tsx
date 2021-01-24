@@ -110,7 +110,7 @@ function Home(): JSX.Element {
         <Grid item>
           <Typography variant="h2" align="center" className="fullTitle">
             <span className="titleFirst">Gimme </span>
-            <span className="titleMid">The </span>
+            <span className="titleMid">the </span>
             <span className="titleLast">News</span>
           </Typography>
         </Grid>

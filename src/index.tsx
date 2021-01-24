@@ -9,7 +9,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 let theme: Theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#E3E36A",
+      main: "#FFFFFF",
     },
     secondary: {
       main: "#CBFF8C",
