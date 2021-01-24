@@ -63,22 +63,40 @@ function Home(): JSX.Element {
     }
     return search;
   };
+
   const getNews = async () => {
     setLoading(true);
+    let imageExists = false;
     if (ratio) {
-      const search = await generateSearch(ratio);
+      const search: string = await generateSearch(ratio);
       const data: ArticleProps[] = await getArticles(search);
+
       if (data.length === 0) {
         getNews();
         return;
       }
+
       // Remove duplicate articles with the same title
       Array.from(new Set<string>(data.map((article) => article.title))).forEach(
-        (title) => {
+        async (title) => {
           const article: ArticleProps | undefined = data.find((article) => {
             return article.title === title;
           });
-          if (article) setArticles([...articles, article]);
+          if (article) {
+            await fetch(
+              new Request(article.urlToImage, {
+                method: "HEAD",
+                mode: "no-cors",
+              })
+            )
+              .then(() => {
+                imageExists = true;
+              })
+              .catch(() => {
+                imageExists = false;
+              });
+            if (imageExists) setArticles([...articles, article]);
+          }
         }
       );
     }
