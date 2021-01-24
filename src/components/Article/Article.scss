@@ -1,26 +1,35 @@
-.article-card {
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
+.article-div {
   margin-left: 0.9rem;
   margin-right: 0.9rem;
   @media only screen and (min-width: 600px) {
     margin-left: 2rem;
     margin-right: 2rem;
+  }
+  @media only screen and (min-width: 768px) {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+  @media only screen and (min-width: 992px) {
+    margin-left: 11rem;
+    margin-right: 11rem;
+  }
+}
+
+.article-card {
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  @media only screen and (min-width: 600px) {
     padding-right: 1.5rem;
     padding-bottom: 1.5rem;
     padding-left: 1.5rem;
   }
   @media only screen and (min-width: 768px) {
-    margin-left: 4rem;
-    margin-right: 4rem;
     padding-right: 1.5rem;
     padding-bottom: 1.5rem;
     padding-left: 1.5rem;
   }
   @media only screen and (min-width: 992px) {
-    margin-left: 11rem;
-    margin-right: 11rem;
     padding-left: 3rem;
     padding-right: 3rem;
     padding-bottom: 3rem;
