@@ -122,6 +122,14 @@ function Home(): JSX.Element {
     getNews();
   };
 
+  const marks: { value: number; label: string }[] = [
+    { value: 0, label: "1" },
+    { value: 25, label: "25" },
+    { value: 50, label: "50" },
+    { value: 75, label: "75" },
+    { value: 99, label: "99" },
+  ];
+
   return (
     <>
       <Grid container justify="center">
@@ -137,11 +145,11 @@ function Home(): JSX.Element {
       <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item justify="center">
           <Typography id="ratio-slider" align="center" variant="h5">
-            Slide to adjust chance of good vs bad news
+            Slide to adjust % chance of good vs bad news
           </Typography>
           <Slider
             defaultValue={50}
-            // marks={marks}
+            marks={marks}
             min={1}
             max={99}
             value={ratio}
