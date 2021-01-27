@@ -134,14 +134,22 @@ function ButtonAppBar() {
                 className={classes.modal}
                 onClose={() => handleClose("signup")}
               >
-                {<Signup></Signup>}
+                {
+                  <span>
+                    <Signup></Signup>
+                  </span>
+                }
               </Modal>
               <Modal
                 open={loginOpen}
                 className={classes.modal}
                 onClose={() => handleClose("login")}
               >
-                {<Login></Login>}
+                {
+                  <span>
+                    <Login></Login>
+                  </span>
+                }
               </Modal>
             </Toolbar>
           </AppBar>
