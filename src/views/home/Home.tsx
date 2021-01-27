@@ -143,7 +143,7 @@ function Home(): JSX.Element {
       </Grid>
 
       <Grid container alignItems="center" justify="center" spacing={2}>
-        <Grid item justify="center">
+        <Grid item>
           <Typography id="ratio-slider" align="center" variant="h5">
             Slide to adjust % chance of good vs bad news
           </Typography>
