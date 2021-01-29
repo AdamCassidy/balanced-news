@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function ButtonAppBar() {
   const classes = useStyles();
   const { currentUser, logout } = useAuth();
-  const [error, setError] = useState<string | null>("");
+  const [error, setError] = useState<string | null>(null);
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
 
