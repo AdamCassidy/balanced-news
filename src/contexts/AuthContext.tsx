@@ -13,6 +13,7 @@ interface ContextProps {
     email: string,
     password: string
   ) => Promise<firebase.auth.UserCredential>;
+  googleLogin?: () => Promise<void | firebase.auth.OAuthCredential>;
   logout?: () => Promise<void>;
 }
 
@@ -32,6 +33,33 @@ export const AuthProvider = ({ children }) => {
   const login = (email: string, password: string) => {
     return auth.signInWithEmailAndPassword(email, password);
   };
+  const googleLogin = () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    return auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        let credential = result.credential as firebase.auth.OAuthCredential;
+        return credential;
+
+        // // This gives you a Google Access Token. You can use it to access the Google API.
+        // let token = credential.accessToken;
+        // // The signed-in user info.
+        let user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        // The email of the user's account used.
+        let email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        let credential = error.credential;
+        // ...
+        console.log(errorMessage);
+        alert(errorMessage);
+      });
+  };
   const logout = () => {
     return auth.signOut();
   };
@@ -47,7 +75,7 @@ export const AuthProvider = ({ children }) => {
     return unsuscribe;
   }, []);
 
-  const value = { login, logout, signup, currentUser };
+  const value = { googleLogin, login, logout, signup, currentUser };
 
   return (
     <AuthContext.Provider value={value}>

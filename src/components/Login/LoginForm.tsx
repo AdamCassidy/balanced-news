@@ -23,7 +23,7 @@ interface Values {
 
 const LoginForm: React.FC = () => {
   const classes: ClassNameMap<"alert"> = useStyles();
-  const { login } = useAuth();
+  const { login, googleLogin } = useAuth();
   const [error, setError] = useState<string | null>("");
   const history = useHistory();
 
@@ -31,6 +31,16 @@ const LoginForm: React.FC = () => {
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
   });
+
+  const handleGoogleLogin = async () => {
+    try {
+      setError(null);
+      if (googleLogin) await googleLogin();
+      history.push("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <Formik
@@ -40,7 +50,6 @@ const LoginForm: React.FC = () => {
       }}
       validationSchema={userSchema}
       onSubmit={async (values: Values, { setSubmitting }) => {
-        console.log("Initialized submit");
         setSubmitting(true);
         try {
           setError(null);
@@ -91,6 +100,13 @@ const LoginForm: React.FC = () => {
           </Button>
           <Button type="reset" variant="outlined" disabled={isSubmitting}>
             Reset
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={handleGoogleLogin}
+            disabled={isSubmitting}
+          >
+            Log in with Google
           </Button>
         </Form>
       )}
