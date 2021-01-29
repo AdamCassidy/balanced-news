@@ -3,6 +3,7 @@ import Article from "./Article/Article";
 import type { ArticleProps } from "./Article/Article";
 import nextId from "react-id-generator";
 import { Grid } from "@material-ui/core";
+import Filter from "bad-words";
 export interface ArticlesProps {
   articles: ArticleProps[];
   getNews: () => {};
@@ -10,6 +11,8 @@ export interface ArticlesProps {
 }
 
 const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
+  const filter = new Filter();
+
   const observer = useRef<IntersectionObserver>();
   const isLastGridItem = useCallback(
     (node) => {
@@ -45,8 +48,8 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
                 <Article
                   key={nextId()}
                   url={article.url}
-                  title={article.title}
-                  description={article.description}
+                  title={filter.clean(article.title)}
+                  description={filter.clean(article.description)}
                   urlToImage={article.urlToImage}
                 ></Article>
               )}
