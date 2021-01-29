@@ -66,7 +66,6 @@ function Home(): JSX.Element {
 
   const getNews = async () => {
     setLoading(true);
-    let imageExists = false;
     if (ratio) {
       const search: string = await generateSearch(ratio);
       const data: ArticleProps[] = await getArticles(search);
@@ -89,13 +88,12 @@ function Home(): JSX.Element {
                 mode: "no-cors",
               })
             )
-              .then(() => {
-                imageExists = true;
+              .then(() => {;
+                setArticles([...articles, article]);
               })
-              .catch(() => {
-                imageExists = false;
+              .catch((err) => {
+                console.log("Image doesn't exist")
               });
-            if (imageExists) setArticles([...articles, article]);
           }
         }
       );
