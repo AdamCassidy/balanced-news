@@ -88,7 +88,7 @@ function Home(): JSX.Element {
                 mode: "no-cors",
               })
             )
-              .then(() => {;
+              .then(() => {
                 setArticles([...articles, article]);
               })
               .catch((err) => {
