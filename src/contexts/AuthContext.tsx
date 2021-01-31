@@ -44,8 +44,6 @@ export const AuthProvider = ({ children }) => {
         // // This gives you a Google Access Token. You can use it to access the Google API.
         // let token = credential.accessToken;
         // // The signed-in user info.
-        let user = result.user;
-        console.log(user);
       })
       .catch((error) => {
         // Handle Errors here.

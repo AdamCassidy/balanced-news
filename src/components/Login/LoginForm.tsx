@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
     alert: {
       maxWidth: "243px",
     },
+    googleLoginBtn: {
+      marginTop: "0.7rem",
+    },
   })
 );
 
@@ -22,7 +25,7 @@ interface Values {
 }
 
 const LoginForm: React.FC = () => {
-  const classes: ClassNameMap<"alert"> = useStyles();
+  const classes: ClassNameMap<"alert" | "googleLoginBtn"> = useStyles();
   const { login, googleLogin } = useAuth();
   const [error, setError] = useState<string | null>("");
   const history = useHistory();
@@ -101,13 +104,17 @@ const LoginForm: React.FC = () => {
           <Button type="reset" variant="outlined" disabled={isSubmitting}>
             Reset
           </Button>
-          <Button
-            variant="outlined"
-            onClick={handleGoogleLogin}
-            disabled={isSubmitting}
-          >
-            Log in with Google
-          </Button>
+          <div>
+            <Button
+              variant="contained"
+              onClick={handleGoogleLogin}
+              disabled={isSubmitting}
+              className={classes.googleLoginBtn}
+              color="primary"
+            >
+              Log in with Google
+            </Button>
+          </div>
         </Form>
       )}
     </Formik>
