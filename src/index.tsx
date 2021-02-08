@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, Theme } from "@material-ui/core";
 import { ThemeProvider, responsiveFontSizes } from "@material-ui/core";
 import { AuthProvider } from "./contexts/AuthContext";
+import { NewsProvider } from "./contexts/NewsContext";
 
 let theme: Theme = createMuiTheme({
   palette: {
@@ -38,11 +39,13 @@ theme = responsiveFontSizes(theme);
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
+      <NewsProvider>
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>
         </BrowserRouter>
+      </NewsProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
