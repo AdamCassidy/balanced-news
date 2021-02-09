@@ -64,14 +64,14 @@ function Home(): JSX.Element {
     return search;
   };
 
-  const getNews = async () => {
+  const dispatchNews = async () => {
     setLoading(true);
     if (ratio) {
       const search: string = await generateSearch(ratio);
       const data: ArticleProps[] = await getArticles(search);
 
       if (data.length === 0) {
-        getNews();
+        dispatchNews();
         return;
       }
 
@@ -117,7 +117,7 @@ function Home(): JSX.Element {
   };
 
   const onSliderChangeCommitted = async () => {
-    getNews();
+    dispatchNews();
   };
 
   const marks: { value: number; label: string }[] = [
@@ -161,7 +161,7 @@ function Home(): JSX.Element {
             {articles ? (
               <Articles
                 articles={articles}
-                getNews={getNews}
+                dispatchNews={dispatchNews}
                 loading={loading}
               ></Articles>
             ) : null}

@@ -6,11 +6,15 @@ import { Grid } from "@material-ui/core";
 import Filter from "bad-words";
 export interface ArticlesProps {
   articles: ArticleProps[];
-  getNews: () => {};
+  dispatchNews: (inputSearch?: string) => Promise<void>;
   loading: boolean;
 }
 
-const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
+const Articles: React.FC<ArticlesProps> = ({
+  articles,
+  dispatchNews,
+  loading,
+}) => {
   const filter = new Filter();
 
   const observer = useRef<IntersectionObserver>();
@@ -18,11 +22,11 @@ const Articles: React.FC<ArticlesProps> = ({ articles, getNews, loading }) => {
     (node) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async (entries) => {
-        if (entries[0].isIntersecting && !loading) getNews();
+        if (entries[0].isIntersecting && !loading) await dispatchNews();
       });
       if (node) observer.current.observe(node);
     },
-    [getNews, loading]
+    [dispatchNews, loading]
   );
   return (
     <Grid container alignItems="center" justify="center" spacing={5}>
