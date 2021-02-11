@@ -1,27 +1,46 @@
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import Modal from "@material-ui/core/Modal";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import { websiteTitle } from "../views/home/Home";
-import { Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import Search from "@material-ui/icons/Search";
+import { Link, Route, Switch } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
-import { Grid, Modal } from "@material-ui/core";
 import Signup from "./Signup/Signup";
 import Login from "./Login/Login";
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MailIcon from "@material-ui/icons/Mail";
+import MenuIcon from "@material-ui/icons/Menu";
+import InfoIcon from "@material-ui/icons/Info";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import {
+  makeStyles,
+  useTheme,
+  Theme,
+  createStyles,
+} from "@material-ui/core/styles";
+import NotFound from "../views/NotFound";
+import Home from "../views/home/Home";
+import About from "../views/About";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      display: "flex",
       flexGrow: 1,
       paddingBottom: theme.spacing(3),
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
     },
     titleFirst: {
       wordSpacing: "-0.1rem",
@@ -56,11 +75,50 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    hiddenXsDown: {
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
+    },
+    drawer: {
+      [theme.breakpoints.up("sm")]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up("md")]: {
+        display: "none",
+      },
+    },
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    content: {
+      marginTop: "15%",
+      flexGrow: 1,
+    },
   })
 );
 
-function ButtonAppBar() {
+const drawerWidth = 240;
+
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+export default function ResponsiveDrawer(props: Props) {
+  const { window } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
@@ -76,27 +134,66 @@ function ButtonAppBar() {
     }
   };
 
-  const handleOpen = (form: string) => {
+  const handleOpenForm = (form: string) => {
     if (form === "signup") setSignupOpen(true);
     else if (form === "login") setLoginOpen(true);
   };
 
-  const handleClose = (form: string) => {
+  const handleCloseForm = (form: string) => {
     if (form === "signup") setSignupOpen(false);
     else if (form === "login") setLoginOpen(false);
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider />
+      <List>
+        {["About"].map((text, index) => (
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <ListItem button key={text}>
+              <ListItemIcon>
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
     <div className={classes.root}>
+      <CssBaseline />
       <Grid container justify="center">
         <Grid item xs={12}>
-          <AppBar position="static">
+          <AppBar position="fixed">
             <Toolbar>
               <IconButton
                 edge="start"
                 className={classes.menuButton}
                 color="inherit"
-                aria-label="menu"
+                aria-label="open drawer"
+                onClick={handleDrawerToggle}
               >
                 <MenuIcon />
               </IconButton>
@@ -117,13 +214,16 @@ function ButtonAppBar() {
                 </Button>
               ) : (
                 <>
-                  <Button color="inherit" onClick={() => handleOpen("login")}>
+                  <Button
+                    color="inherit"
+                    onClick={() => handleOpenForm("login")}
+                  >
                     Login
                   </Button>
                   <Button
                     color="inherit"
                     className={classes.centerText}
-                    onClick={() => handleOpen("signup")}
+                    onClick={() => handleOpenForm("signup")}
                   >
                     Sign up
                   </Button>
@@ -132,7 +232,7 @@ function ButtonAppBar() {
               <Modal
                 open={signupOpen}
                 className={classes.modal}
-                onClose={() => handleClose("signup")}
+                onClose={() => handleCloseForm("signup")}
               >
                 {
                   <span>
@@ -143,7 +243,7 @@ function ButtonAppBar() {
               <Modal
                 open={loginOpen}
                 className={classes.modal}
-                onClose={() => handleClose("login")}
+                onClose={() => handleCloseForm("login")}
               >
                 {
                   <span>
@@ -154,6 +254,24 @@ function ButtonAppBar() {
             </Toolbar>
           </AppBar>
         </Grid>
+
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </nav>
         <Grid item xs={7}>
           {error && (
             <Alert
@@ -166,9 +284,14 @@ function ButtonAppBar() {
             </Alert>
           )}
         </Grid>
+        <Grid container className={classes.content}>
+          <Switch>
+            <Route exact path="/" component={() => <Home />}></Route>
+            <Route component={() => <About />}></Route>
+            <Route component={() => <NotFound />}></Route>
+          </Switch>
+        </Grid>
       </Grid>
     </div>
   );
 }
-
-export default ButtonAppBar;
