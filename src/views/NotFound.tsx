@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const NotFound = () => {
+const NotFound = () => {
   const classes: ClassNameMap<"center"> = useStyles();
   return (
     <div>
@@ -22,3 +22,5 @@ export const NotFound = () => {
     </div>
   );
 };
+
+export default NotFound;
