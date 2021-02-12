@@ -92,9 +92,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
-      [theme.breakpoints.up("md")]: {
-        display: "none",
-      },
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
