@@ -208,6 +208,19 @@ export default function ResponsiveDrawer(props: Props) {
                 <span className={classes.titleLast}>News</span>
               </Typography>
 
+              <TextField
+                className={(classes.search, classes.hiddenXsDown)}
+                id="input-with-icon-textfield"
+                type="search"
+                label="Search"
+              />
+              <IconButton
+                edge="start"
+                className={classes.hiddenXsDown}
+              >
+                <Search />
+              </IconButton>
+
               {currentUser ? (
                 <Button color="inherit" onClick={dispatchLogout}>
                   Logout
