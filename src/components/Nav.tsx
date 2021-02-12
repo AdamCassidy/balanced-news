@@ -190,7 +190,7 @@ function ResponsiveDrawer(props: Props) {
       <CssBaseline />
       <Grid container justify="center">
         <Grid item xs={12}>
-          <AppBar position="fixed">
+          <AppBar position="static">
             <Toolbar>
               <IconButton
                 edge="start"
