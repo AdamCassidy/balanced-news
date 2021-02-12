@@ -297,13 +297,6 @@ export default function ResponsiveDrawer(props: Props) {
             </Alert>
           )}
         </Grid>
-        <Grid container className={classes.content}>
-          <Switch>
-            <Route exact path="/" component={() => <Home />}></Route>
-            <Route component={() => <About />}></Route>
-            <Route component={() => <NotFound />}></Route>
-          </Switch>
-        </Grid>
       </Grid>
     </div>
   );
