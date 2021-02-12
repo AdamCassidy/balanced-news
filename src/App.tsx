@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./views/home/Home";
 import Nav from "./components/Nav";
 import NotFound from "./views/NotFound";
+import About from "./views/About";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Nav></Nav>
       <Switch>
         <Route exact path="/" component={() => <Home />}></Route>
+        <Route exact path="/about" component={() => <About />}></Route>
         <Route component={() => <NotFound />}></Route>
       </Switch>
     </>
