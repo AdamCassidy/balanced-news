@@ -8,14 +8,17 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { ChangeEvent } from "react";
 import "./Home.scss";
+import { useNews } from "../../contexts/NewsContext";
 
 export const websiteTitle = "Gimme The News";
 
 function Home(): JSX.Element {
   const [articles, setArticles] = useState<ArticleProps[]>([]);
+  // Used to calculate how many articles were added on intersect observe
   const [loading, setLoading] = useState<boolean>(false);
   const [ratio, setRatio] = useState<number>(50);
   const LOCAL_STORAGE_KEY = "articles";
+  const { search, setSearch } = useNews();
 
   useEffect(() => {
     const tempArticles = JSON.parse(
@@ -92,7 +95,7 @@ function Home(): JSX.Element {
                 setArticles([...articles, article]);
               })
               .catch((err) => {
-                console.log("Image doesn't exist")
+                console.log("Image doesn't exist");
               });
           }
         }

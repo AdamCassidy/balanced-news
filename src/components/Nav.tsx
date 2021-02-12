@@ -34,6 +34,7 @@ import {
 import NotFound from "../views/NotFound";
 import Home from "../views/home/Home";
 import About from "../views/About";
+import { useNews } from "../contexts/NewsContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,6 +76,9 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
+    search: {
+      paddingBottom: "1rem",
+    },
     hiddenXsDown: {
       [theme.breakpoints.down("xs")]: {
         display: "none",
@@ -114,7 +118,7 @@ interface Props {
   window?: () => Window;
 }
 
-export default function ResponsiveDrawer(props: Props) {
+function ResponsiveDrawer(props: Props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -123,6 +127,9 @@ export default function ResponsiveDrawer(props: Props) {
   const [error, setError] = useState<string | null>(null);
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
+  const { setSearch } = useNews();
+
+  const handleSearch = () => {};
 
   const dispatchLogout = () => {
     try {
@@ -213,10 +220,14 @@ export default function ResponsiveDrawer(props: Props) {
                 id="input-with-icon-textfield"
                 type="search"
                 label="Search"
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
               />
               <IconButton
                 edge="start"
                 className={classes.hiddenXsDown}
+                onClick={handleSearch}
               >
                 <Search />
               </IconButton>
@@ -301,3 +312,5 @@ export default function ResponsiveDrawer(props: Props) {
     </div>
   );
 }
+
+export default ResponsiveDrawer;
