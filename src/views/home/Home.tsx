@@ -84,20 +84,21 @@ function Home(): JSX.Element {
           const article: ArticleProps | undefined = data.find((article) => {
             return article.title === title;
           });
-          if (article) {
-            await fetch(
-              new Request(article.urlToImage, {
-                method: "HEAD",
-                mode: "no-cors",
-              })
-            )
-              .then(() => {
-                setArticles([...articles, article]);
-              })
-              .catch((err) => {
-                console.log("Image doesn't exist");
-              });
-          }
+          if (article) setArticles([...articles, article]);
+          // if (article) {
+          //   await fetch(
+          //     new Request(article.urlToImage, {
+          //       method: "HEAD",
+          //       mode: "no-cors",
+          //     })
+          //   )
+          //     .then(() => {
+          //       setArticles([...articles, article]);
+          //     })
+          //     .catch((err) => {
+          //       console.log("Image doesn't exist");
+          //     });
+          // }
         }
       );
     }
