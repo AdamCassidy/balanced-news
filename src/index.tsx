@@ -39,13 +39,11 @@ theme = responsiveFontSizes(theme);
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <NewsProvider>
-        <BrowserRouter>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-      </NewsProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
