@@ -98,10 +98,6 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
-    content: {
-      marginTop: "15%",
-      flexGrow: 1,
-    },
   })
 );
 
@@ -193,6 +189,7 @@ function ResponsiveDrawer(props: Props) {
           <AppBar position="static">
             <Toolbar>
               <IconButton
+                disableFocusRipple
                 edge="start"
                 className={classes.menuButton}
                 color="inherit"
@@ -237,12 +234,14 @@ function ResponsiveDrawer(props: Props) {
                 <>
                   <Button
                     color="inherit"
+                    disableFocusRipple
                     onClick={() => handleOpenForm("login")}
                   >
                     Login
                   </Button>
                   <Button
                     color="inherit"
+                    disableFocusRipple
                     className={classes.centerText}
                     onClick={() => handleOpenForm("signup")}
                   >
