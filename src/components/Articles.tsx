@@ -1,13 +1,13 @@
 import React, { useCallback, useRef } from "react";
-import Article from "./Article/Article";
-import type { ArticleProps } from "./Article/Article";
+import Article from "./article/Article";
+import type { ArticleProps } from "./article/Article";
 import nextId from "react-id-generator";
 import { Grid } from "@material-ui/core";
 import Filter from "bad-words";
 export interface ArticlesProps {
   articles: ArticleProps[];
-  dispatchNews: (inputSearch?: string) => Promise<void>;
   loading: boolean;
+  dispatchNews: (inputSearch?: string) => Promise<void>;
 }
 
 const Articles: React.FC<ArticlesProps> = ({

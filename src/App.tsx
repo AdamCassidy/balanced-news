@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./views/home/Home";
-import Nav from "./components/Nav";
+import Nav from "./components/nav/Nav";
 import NotFound from "./views/NotFound";
 import About from "./views/About";
 

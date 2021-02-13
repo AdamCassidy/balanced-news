@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ArticleProps } from "../components/Article/Article";
+import { ArticleProps } from "../components/article/Article";
 import { getArticles } from "../newsApi";
 
 interface ContextProps {

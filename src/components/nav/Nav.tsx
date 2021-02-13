@@ -4,11 +4,11 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Search from "@material-ui/icons/Search";
 import { Link, Route, Switch } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
-import Signup from "./Signup/Signup";
-import Login from "./Login/Login";
+import Signup from "../signup/Signup";
+import Login from "../login/Login";
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -31,10 +31,10 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core/styles";
-import NotFound from "../views/NotFound";
-import Home from "../views/home/Home";
-import About from "../views/About";
-import { useNews } from "../contexts/NewsContext";
+import NotFound from "../../views/NotFound";
+import Home from "../../views/home/Home";
+import About from "../../views/About";
+import { useNews } from "../../contexts/NewsContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

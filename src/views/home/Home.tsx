@@ -1,6 +1,6 @@
 import React, { /*useRef,*/ useState, useEffect } from "react";
 import { getArticles } from "../../newsApi";
-import type { ArticleProps } from "../../components/Article/Article";
+import type { ArticleProps } from "../../components/article/Article";
 import Articles from "../../components/Articles";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Slider from "@material-ui/core/Slider";
