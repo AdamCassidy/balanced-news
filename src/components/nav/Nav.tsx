@@ -1,9 +1,8 @@
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Search from "@material-ui/icons/Search";
-import { Link, Route, Switch } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { Alert } from "@material-ui/lab";
@@ -31,10 +30,7 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core/styles";
-import NotFound from "../../views/NotFound";
-import Home from "../../views/home/Home";
-import About from "../../views/About";
-import { useNews } from "../../contexts/NewsContext";
+import Search from "./Search";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,14 +72,6 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    search: {
-      paddingBottom: "1rem",
-    },
-    hiddenXsDown: {
-      [theme.breakpoints.down("xs")]: {
-        display: "none",
-      },
-    },
     drawer: {
       [theme.breakpoints.up("sm")]: {
         width: drawerWidth,
@@ -120,9 +108,6 @@ function ResponsiveDrawer(props: Props) {
   const [error, setError] = useState<string | null>(null);
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
-  const { setSearch } = useNews();
-
-  const handleSearch = () => {};
 
   const dispatchLogout = () => {
     try {
@@ -209,22 +194,7 @@ function ResponsiveDrawer(props: Props) {
                 <span className={classes.titleLast}>News</span>
               </Typography>
 
-              <TextField
-                className={(classes.search, classes.hiddenXsDown)}
-                id="input-with-icon-textfield"
-                type="search"
-                label="Search"
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
-              <IconButton
-                edge="start"
-                className={classes.hiddenXsDown}
-                onClick={handleSearch}
-              >
-                <Search />
-              </IconButton>
+              <Search></Search>
 
               {currentUser ? (
                 <Button color="inherit" onClick={dispatchLogout}>
