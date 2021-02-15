@@ -168,7 +168,6 @@ function ResponsiveDrawer(props: Props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <Grid container justify="center">
         <Grid item xs={12}>
           <AppBar position="static">
