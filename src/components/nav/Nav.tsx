@@ -1,16 +1,12 @@
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Alert } from "@material-ui/lab";
-import Signup from "../signup/Signup";
-import Login from "../login/Login";
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -31,6 +27,9 @@ import {
   createStyles,
 } from "@material-ui/core/styles";
 import Search from "./Search";
+
+const Signup = React.lazy(() => import("../signup/Signup"));
+const Login = React.lazy(() => import("../login/Login"));
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -225,7 +224,9 @@ function ResponsiveDrawer(props: Props) {
               >
                 {
                   <span>
-                    <Signup></Signup>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Signup></Signup>
+                    </Suspense>
                   </span>
                 }
               </Modal>
@@ -236,7 +237,9 @@ function ResponsiveDrawer(props: Props) {
               >
                 {
                   <span>
-                    <Login></Login>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Login></Login>
+                    </Suspense>
                   </span>
                 }
               </Modal>
