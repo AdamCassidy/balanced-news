@@ -138,7 +138,11 @@ function ResponsiveDrawer(props: Props) {
       <Divider />
       <List>
         {["About"].map((text, index) => (
-          <Link to="/about" style={{ textDecoration: "none" }}>
+          <Link
+            to="/about"
+            style={{ textDecoration: "none" }}
+            onClick={handleDrawerToggle}
+          >
             <ListItem button key={text}>
               <ListItemIcon>
                 <InfoIcon />
