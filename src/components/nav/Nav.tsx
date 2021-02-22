@@ -96,7 +96,7 @@ interface Props {
   window?: () => Window;
 }
 
-function ResponsiveDrawer(props: Props) {
+const Nav: (props: Props) => JSX.Element = (props: Props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -105,6 +105,13 @@ function ResponsiveDrawer(props: Props) {
   const [error, setError] = useState<string | null>(null);
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      handleCloseForm("signup");
+      handleCloseForm("login");
+    }
+  }, [currentUser]);
 
   const dispatchLogout = () => {
     try {
@@ -270,6 +277,6 @@ function ResponsiveDrawer(props: Props) {
       </Grid>
     </div>
   );
-}
+};
 
-export default ResponsiveDrawer;
+export default Nav;
