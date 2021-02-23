@@ -5,7 +5,7 @@ import { getArticles } from "../newsApi";
 interface ContextProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  dispatchNews: (ratio: number) => Promise<void>;
+  dispatchNews: (search: string, ratio: number) => Promise<void>;
   articles: ArticleProps[];
   setArticles: React.Dispatch<React.SetStateAction<ArticleProps[]>>;
 }
@@ -13,8 +13,9 @@ interface ContextProps {
 const NewsContext: React.Context<ContextProps> = React.createContext<ContextProps>(
   {
     search: "",
+    // These are unused defaults until the provider gives them the correct values
     setSearch: () => {},
-    dispatchNews: async (ratio: number) => {},
+    dispatchNews: async (search: string, ratio: number) => {},
     articles: [],
     setArticles: () => {},
   }
@@ -25,7 +26,8 @@ export const useNews = () => {
 };
 
 export const NewsProvider = ({ children }) => {
-  const { search, setSearch, articles, setArticles } = useNews();
+  const [search, setSearch] = useState<string>("");
+  const [articles, setArticles] = useState<ArticleProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const generateSearch = async (ratio: number) => {
@@ -64,7 +66,7 @@ export const NewsProvider = ({ children }) => {
     return newSearch;
   };
 
-  const dispatchNews = async (ratio: number) => {
+  const dispatchNews = async (search, ratio: number) => {
     setLoading(true);
     let newArticles: ArticleProps[] = [];
     if (ratio) {
