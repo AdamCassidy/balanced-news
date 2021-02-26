@@ -1,9 +1,9 @@
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Alert } from "@material-ui/lab";
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
@@ -25,6 +25,7 @@ import {
   createStyles,
 } from "@material-ui/core/styles";
 import Search from "./Search";
+import AboutSideNav from "./AboutSideNav";
 
 const Signup = React.lazy(() => import("../signup/Signup"));
 const Login = React.lazy(() => import("../login/Login"));
@@ -262,6 +263,9 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
             {drawer}
           </Drawer>
         </nav>
+        <BrowserRouter>
+          <Route path="/about" component={AboutSideNav} />
+        </BrowserRouter>
         <Grid item xs={7}>
           {error && (
             <Alert
