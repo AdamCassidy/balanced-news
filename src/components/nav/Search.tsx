@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
     search: {
       paddingBottom: "1rem",
     },
+    searchIcon: {
+      paddingTop: "0.6rem",
+    },
     hiddenXsDown: {
       [theme.breakpoints.down("xs")]: {
         display: "none",
@@ -28,9 +31,9 @@ const Search = () => {
   const handleSearch = () => {};
 
   return (
-    <>
+    <div className={classes.hiddenXsDown}>
       <TextField
-        className={(classes.search, classes.hiddenXsDown)}
+        className={classes.search}
         id="input-with-icon-textfield"
         type="search"
         label="Search"
@@ -40,12 +43,12 @@ const Search = () => {
       />
       <IconButton
         edge="start"
-        className={classes.hiddenXsDown}
         onClick={handleSearch}
+        className={classes.searchIcon}
       >
         <SearchIcon />
       </IconButton>
-    </>
+    </div>
   );
 };
 
