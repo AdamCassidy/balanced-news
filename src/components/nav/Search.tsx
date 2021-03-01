@@ -41,12 +41,8 @@ const Search = () => {
           setSearch(e.target.value);
         }}
       />
-      <IconButton
-        edge="start"
-        onClick={handleSearch}
-        className={classes.searchIcon}
-      >
-        <SearchIcon />
+      <IconButton edge="start" onClick={handleSearch}>
+        <SearchIcon className={classes.searchIcon} />
       </IconButton>
     </div>
   );
