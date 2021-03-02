@@ -1,7 +1,7 @@
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { Suspense, useEffect, useState } from "react";
 import { Alert } from "@material-ui/lab";
@@ -263,9 +263,6 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
             {drawer}
           </Drawer>
         </nav>
-        <BrowserRouter>
-          <Route path="/about" component={AboutSideNav} />
-        </BrowserRouter>
         <Grid item xs={7}>
           {error && (
             <Alert
