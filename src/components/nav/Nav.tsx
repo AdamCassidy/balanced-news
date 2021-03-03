@@ -58,9 +58,11 @@ const useStyles = makeStyles((theme: Theme) =>
       textShadow:
         "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
     },
+    spacer: {
+      flexGrow: 1,
+    },
     fullTitle: {
       textDecoration: "none",
-      flexGrow: 1,
     },
     centerText: {
       textAlign: "center",
@@ -180,6 +182,7 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
               >
                 <MenuIcon />
               </IconButton>
+              <Grid className={classes.spacer}>
               <Typography
                 variant="h6"
                 component={Link}
@@ -190,6 +193,7 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
                 <span className={classes.titleMid}>the </span>
                 <span className={classes.titleLast}>News</span>
               </Typography>
+              </Grid>
 
               <Search></Search>
 
@@ -246,7 +250,7 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
           </AppBar>
         </Grid>
 
-        <nav className={classes.drawer} aria-label="mailbox folders">
+        <nav className={classes.drawer}>
           <Drawer
             container={container}
             variant="temporary"
