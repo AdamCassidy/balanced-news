@@ -36,6 +36,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexGrow: 1,
       paddingBottom: theme.spacing(3),
+      zIndex: 1251,
+      position: "relative",
     },
     titleFirst: {
       wordSpacing: "-0.1rem",
@@ -183,16 +185,16 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
                 <MenuIcon />
               </IconButton>
               <Grid className={classes.spacer}>
-              <Typography
-                variant="h6"
-                component={Link}
-                to="/"
-                className={classes.fullTitle}
-              >
-                <span className={classes.titleFirst}>Gimme </span>
-                <span className={classes.titleMid}>the </span>
-                <span className={classes.titleLast}>News</span>
-              </Typography>
+                <Typography
+                  variant="h6"
+                  component={Link}
+                  to="/"
+                  className={classes.fullTitle}
+                >
+                  <span className={classes.titleFirst}>Gimme </span>
+                  <span className={classes.titleMid}>the </span>
+                  <span className={classes.titleLast}>News</span>
+                </Typography>
               </Grid>
 
               <Search></Search>

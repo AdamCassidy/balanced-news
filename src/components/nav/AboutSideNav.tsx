@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      zIndex: 1250,
     },
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
