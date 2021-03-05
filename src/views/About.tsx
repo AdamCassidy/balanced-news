@@ -40,35 +40,6 @@ const About: React.FC = () => {
     | "marginBottom"
     | "aboutContent"
   > = useStyles();
-  // const shareItems: Array<{ icon: string; link: string; color?: string }> = [
-  //   {
-  //     icon: "email",
-  //     link: "mailto:2ndopinionforum@gmail.com",
-  //   },
-  //   {
-  //     icon: "mdi-facebook",
-  //     link: "https://www.facebook.com/2ndOpinionForum/",
-  //     color: "#3b5998",
-  //   },
-  //   {
-  //     icon: "mdi-twitter",
-  //     link:
-  //       "https://twitter.com/intent/tweet?text=Check%20out%20this%20forum.&url=https%3a%2f%2fsecondopinionforum.com",
-  //     color: "#00acee",
-  //   },
-  //   {
-  //     icon: "mdi-reddit",
-  //     link:
-  //       "https://www.reddit.com/submit?title=Check%20out%20this%20forum.%20&url=https%3A%2F%2Fsecondopinionforum.com",
-  //     color: "#FF4500",
-  //   },
-  //   {
-  //     icon: "mdi-whatsapp",
-  //     link:
-  //       "https://wa.me/?text=Check%20out%20this%20forum.%20https%3A%2F%2Fsecondopinionforum.com",
-  //     color: "#25d366",
-  //   },
-  // ];
 
   return (
     <Grid container justify="center" className={classes.aboutContent}>
