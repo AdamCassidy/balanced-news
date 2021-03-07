@@ -33,7 +33,7 @@ const Articles: React.FC<ArticlesProps> = ({
       {articles.map((article, index) => {
         if (articles.length === index + 1) {
           return (
-            <Grid item xs={12} ref={isLastGridItem}>
+            <Grid item xs={12} key={nextId()} ref={isLastGridItem}>
               {article.urlToImage && (
                 <Article
                   key={nextId()}
@@ -47,7 +47,7 @@ const Articles: React.FC<ArticlesProps> = ({
           );
         } else {
           return (
-            <Grid item xs={12}>
+            <Grid item key={nextId()} xs={12}>
               {article.urlToImage && (
                 <Article
                   key={nextId()}

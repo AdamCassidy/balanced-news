@@ -18,6 +18,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/Info";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import nextId from "react-id-generator";
+
 import {
   makeStyles,
   useTheme,
@@ -152,8 +154,9 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
             to="/about"
             style={{ textDecoration: "none" }}
             onClick={handleDrawerToggle}
+            key={nextId()}
           >
-            <ListItem button key={text}>
+            <ListItem button>
               <ListItemIcon>
                 <InfoIcon />
               </ListItemIcon>
