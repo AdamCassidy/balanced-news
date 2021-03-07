@@ -52,7 +52,7 @@ const AboutSideNav: () => JSX.Element = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Grid container className={classes.root}>
       <CssBaseline />
       <Drawer
         className={classes.drawer}
@@ -87,7 +87,7 @@ const AboutSideNav: () => JSX.Element = () => {
           </Grid>
         </Grid>
       </Drawer>
-    </div>
+    </Grid>
   );
 };
 
