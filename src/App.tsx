@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Nav></Nav>
-      <Route exact path="/about" component={() => <AboutSideNav />}></Route>
+
       <Switch>
         <Route exact path="/" component={() => <Home />}></Route>
         <Route exact path="/about" component={() => <About />}></Route>
