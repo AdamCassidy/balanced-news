@@ -4,7 +4,12 @@ import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import { IconButton } from "@material-ui/core";
+import EmailIcon from "@material-ui/icons/Email";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import RedditIcon from "@material-ui/icons/Reddit";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import TwitterIcon from "@material-ui/icons/Twitter";
+
 import { Grid, Link } from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -33,17 +38,25 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       padding: theme.spacing(3),
     },
+    email: {
+      color: "black",
+      margin: "4px",
+    },
     facebook: {
       color: "#3b5998",
+      margin: "4px",
     },
     twitter: {
       color: "#00acee",
+      margin: "4px",
     },
     reddit: {
       color: "#FF4500",
+      margin: "4px",
     },
     whatsapp: {
       color: "#25d366",
+      margin: "4px",
     },
   })
 );
@@ -70,19 +83,19 @@ const AboutSideNav: () => JSX.Element = () => {
             <Divider />
 
             <Link href="mailto:adamcassidy011@gmail.com">
-              <IconButton color="inherit">Email</IconButton>
+              <EmailIcon className={classes.email} />
             </Link>
             <Link href="">
-              <IconButton className={classes.facebook}>Facebook</IconButton>
+              <FacebookIcon className={classes.facebook} />
             </Link>
             <Link href="">
-              <IconButton className={classes.twitter}>Twitter</IconButton>
+              <TwitterIcon className={classes.twitter} />
             </Link>
             <Link href="">
-              <IconButton className={classes.reddit}>Reddit</IconButton>
+              <RedditIcon className={classes.reddit} />
             </Link>
             <Link href="">
-              <IconButton className={classes.whatsapp}>WhatsApp</IconButton>
+              <WhatsAppIcon className={classes.whatsapp} />
             </Link>
           </Grid>
         </Grid>
