@@ -6,6 +6,9 @@ import AboutSideNav from "../components/nav/AboutSideNav";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    title: {
+      paddingBottom: "8px",
+    },
     bold: {
       fontWeight: "bold",
     },
@@ -33,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const About: React.FC = () => {
   const classes: ClassNameMap<
+    | "title"
     | "bold"
     | "facebook"
     | "reddit"
@@ -47,7 +51,11 @@ const About: React.FC = () => {
       <Grid item xs={10}>
         <Grid container justify="center" className={classes.aboutContent}>
           <Grid item xs={12}>
-            <Typography variant="h3" align="center" className="title">
+            <Typography
+              variant="h3"
+              align="center"
+              className={classes.title + " title"}
+            >
               About
             </Typography>
           </Grid>
