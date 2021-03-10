@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: "2rem",
     },
     aboutContent: {
-      paddingLeft: "3rem",
-      paddingRight: "3rem",
+      paddingLeft: "6rem",
+      paddingRight: "6rem",
     },
   })
 );
