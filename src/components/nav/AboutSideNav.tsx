@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       zIndex: 1250,
     },
+    center: {
+      display: "flex",
+      justifyContent: "center",
+    },
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginRight: drawerWidth,
@@ -77,11 +81,11 @@ const AboutSideNav: () => JSX.Element = () => {
       >
         <div className={classes.toolbar} />
 
-        <Grid container>
-          <Grid item xs={12}>
+        <Grid container className={classes.center}>
+          <Grid item xs={12} className={classes.center}>
             <Typography variant="h5">Contact</Typography>
-            <Divider />
-
+          </Grid>
+          <Grid item xs={12} className={classes.center}>
             <Link href="mailto:adamcassidy011@gmail.com">
               <EmailIcon className={classes.email} />
             </Link>
