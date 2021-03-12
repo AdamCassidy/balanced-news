@@ -1,6 +1,7 @@
 import {
   createStyles,
   IconButton,
+  InputBase,
   makeStyles,
   TextField,
   Theme,
@@ -11,10 +12,10 @@ import { useNews } from "../../contexts/NewsContext";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
-      paddingBottom: "1rem",
+      paddingTop: "0.9rem",
     },
     searchIcon: {
-      paddingTop: "0.6rem",
+      paddingBottom: "0.4rem",
     },
     hiddenXsDown: {
       [theme.breakpoints.down("xs")]: {
@@ -32,11 +33,10 @@ const Search = () => {
 
   return (
     <div className={classes.hiddenXsDown}>
-      <TextField
+      <InputBase
         className={classes.search}
         id="input-with-icon-textfield"
-        type="search"
-        label="Search"
+        placeholder="Basic News Search"
         onChange={(e) => {
           setSearch(e.target.value);
         }}
