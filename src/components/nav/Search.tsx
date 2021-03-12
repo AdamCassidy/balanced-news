@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     search: {
       paddingTop: "0.9rem",
+      maxWidth: "200px",
     },
     searchIcon: {
       paddingBottom: "0.4rem",
