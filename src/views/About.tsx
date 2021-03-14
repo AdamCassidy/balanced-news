@@ -61,12 +61,7 @@ const About: React.FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Grid container justify="center">
-              <Grid
-                item
-                className={classes.marginBottom}
-                alignContent="center"
-                xs={12}
-              >
+              <Grid item className={classes.marginBottom} xs={12}>
                 <Typography variant="h5">FAQ</Typography>
               </Grid>
               <Grid item className={classes.marginBottom} xs={12}>
