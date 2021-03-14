@@ -69,10 +69,10 @@ const About: React.FC = () => {
                   How are the articles generated?
                 </Typography>
                 <Typography>
-                  Liu Bing, Hu Minqing and Cheng Junsheng compiled a list of
-                  positive and negative words through years of working on the
-                  data mining of opinions.
-                  <br /> Link:{" "}
+                  Researchers Liu Bing, Hu Minqing and Cheng Junsheng compiled a
+                  list of positive and negative words through years of working
+                  on the data mining of opinions.
+                  <br />
                   <Link
                     href="https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html"
                     color="inherit"
@@ -87,7 +87,6 @@ const About: React.FC = () => {
                 </Typography>
                 <Typography>
                   Google's "News Api". <br />
-                  Link:{" "}
                   <Link
                     href="https://newsapi.org/s/google-news-api"
                     color="inherit"
@@ -101,8 +100,7 @@ const About: React.FC = () => {
                   Why can't I set the slider to 0% or 100%?
                 </Typography>
                 <Typography>
-                  This was decided because "good" and "bad" is relative, so news
-                  is always a mix of both.
+                  "Good" and "bad" is relative, so news is always a mix of both.
                 </Typography>
               </Grid>
             </Grid>
