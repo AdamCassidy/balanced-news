@@ -27,7 +27,6 @@ import {
   createStyles,
 } from "@material-ui/core/styles";
 import Search from "./Search";
-import AboutSideNav from "./AboutSideNav";
 
 const Signup = React.lazy(() => import("../signup/Signup"));
 const Login = React.lazy(() => import("../login/Login"));
@@ -200,7 +199,7 @@ const Nav: (props: Props) => JSX.Element = (props: Props) => {
                 </Typography>
               </Grid>
 
-              <Search></Search>
+              {/* <Search></Search> */}
 
               {currentUser ? (
                 <Button color="inherit" onClick={dispatchLogout}>
